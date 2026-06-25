@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<script>document.documentElement.className+=' js';</script>
+<script>document.documentElement.className+=' js';(function(){var s=document.createElement('script');s.src='assets/app.js';document.head.appendChild(s);})();</script>
 
 <!-- ─── SEO ─── -->
 <title>Ana Carolina Mendanha · Advocacia Trabalhista Empresarial | Defesa trabalhista para empresas</title>
@@ -44,7 +44,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" data-fontswap>
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
 
 <!-- ─── Dados estruturados (Schema.org) ─── -->
@@ -811,7 +811,7 @@ footer { background:var(--navy-deep); color:rgba(255,255,255,.6); padding:64px 0
     </div>
     <div class="faq-wrap reveal">
       <div class="faq-item">
-        <button class="faq-btn" type="button" aria-expanded="false" onclick="toggleFaq(this)">
+        <button class="faq-btn" type="button" aria-expanded="false">
           Minha empresa recebeu uma notificação trabalhista. O que fazer?
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
@@ -821,7 +821,7 @@ footer { background:var(--navy-deep); color:rgba(255,255,255,.6); padding:64px 0
         </div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-btn" type="button" aria-expanded="false" onclick="toggleFaq(this)">
+        <button class="faq-btn" type="button" aria-expanded="false">
           Já existe uma ação trabalhista contra a empresa. Ainda dá para buscar defesa?
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
@@ -831,7 +831,7 @@ footer { background:var(--navy-deep); color:rgba(255,255,255,.6); padding:64px 0
         </div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-btn" type="button" aria-expanded="false" onclick="toggleFaq(this)">
+        <button class="faq-btn" type="button" aria-expanded="false">
           Minha empresa já tem audiência marcada. Como proceder?
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
@@ -841,7 +841,7 @@ footer { background:var(--navy-deep); color:rgba(255,255,255,.6); padding:64px 0
         </div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-btn" type="button" aria-expanded="false" onclick="toggleFaq(this)">
+        <button class="faq-btn" type="button" aria-expanded="false">
           Preciso enviar documentos no primeiro contato?
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
@@ -851,7 +851,7 @@ footer { background:var(--navy-deep); color:rgba(255,255,255,.6); padding:64px 0
         </div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-btn" type="button" aria-expanded="false" onclick="toggleFaq(this)">
+        <button class="faq-btn" type="button" aria-expanded="false">
           A empresa pode ser atendida fora de Goiânia?
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
@@ -861,7 +861,7 @@ footer { background:var(--navy-deep); color:rgba(255,255,255,.6); padding:64px 0
         </div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-btn" type="button" aria-expanded="false" onclick="toggleFaq(this)">
+        <button class="faq-btn" type="button" aria-expanded="false">
           O atendimento é feito diretamente com a advogada?
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
@@ -870,7 +870,7 @@ footer { background:var(--navy-deep); color:rgba(255,255,255,.6); padding:64px 0
         </div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-btn" type="button" aria-expanded="false" onclick="toggleFaq(this)">
+        <button class="faq-btn" type="button" aria-expanded="false">
           A atuação também inclui prevenção trabalhista?
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
@@ -913,79 +913,5 @@ footer { background:var(--navy-deep); color:rgba(255,255,255,.6); padding:64px 0
   </div>
 </footer>
 
-<script>
-/* ─── Ano atual no rodapé ─── */
-(function () {
-  var el = document.getElementById('ano-atual');
-  if (el) el.textContent = new Date().getFullYear();
-})();
-
-/* ─── FAQ ─── */
-function toggleFaq(btn) {
-  const body = btn.nextElementSibling;
-  const isOpen = btn.classList.contains('open');
-  document.querySelectorAll('.faq-btn').forEach(b => {
-    b.classList.remove('open');
-    b.setAttribute('aria-expanded', 'false');
-    b.nextElementSibling.classList.remove('open');
-  });
-  if (!isOpen) {
-    btn.classList.add('open');
-    btn.setAttribute('aria-expanded', 'true');
-    body.classList.add('open');
-  }
-}
-
-/* ─── Progressive enhancement: reveal + parallax ─── */
-(function () {
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var els = document.querySelectorAll('.reveal');
-
-  /* Scroll reveal (IntersectionObserver) */
-  if (!reduce && 'IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    els.forEach(function (el) { io.observe(el); });
-  } else {
-    els.forEach(function (el) { el.classList.add('in'); });
-  }
-
-  /* Header shadow on scroll */
-  var header = document.getElementById('site-header');
-  var onScrollHeader = function () {
-    if (window.scrollY > 12) header.classList.add('scrolled');
-    else header.classList.remove('scrolled');
-  };
-  window.addEventListener('scroll', onScrollHeader, { passive: true });
-  onScrollHeader();
-
-  /* Parallax — apenas em dispositivos com capacidade computacional */
-  var capable = !reduce
-    && (navigator.hardwareConcurrency || 0) >= 4
-    && window.matchMedia('(min-width: 1024px)').matches
-    && window.matchMedia('(pointer: fine)').matches;
-
-  if (capable) {
-    var items = [].slice.call(document.querySelectorAll('[data-parallax]')).map(function (el) {
-      return { el: el, s: parseFloat(el.getAttribute('data-parallax')) };
-    });
-    var ticking = false;
-    var update = function () {
-      var y = window.scrollY;
-      items.forEach(function (it) {
-        it.el.style.transform = 'translate3d(0,' + (y * it.s).toFixed(1) + 'px,0)';
-      });
-      ticking = false;
-    };
-    window.addEventListener('scroll', function () {
-      if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
-    }, { passive: true });
-    update();
-  }
-})();
-</script>
 </body>
 </html>

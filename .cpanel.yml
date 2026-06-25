@@ -5,6 +5,7 @@ deployment:
     - export DEPLOYPATH=/home2/hg3ads37/carolinamendanha.com.br
     - /bin/mkdir -p "$DEPLOYPATH"
     - /bin/cp index.html "$DEPLOYPATH"
+    - /bin/cp .htaccess "$DEPLOYPATH"
     - /bin/cp robots.txt "$DEPLOYPATH"
     - /bin/cp sitemap.xml "$DEPLOYPATH"
     - /bin/cp site.webmanifest "$DEPLOYPATH"
