@@ -1,10 +1,8 @@
 ---
 deployment:
   tasks:
-    # Substitua CPANEL_USER pelo usuário da sua conta cPanel.
-    # Para publicar na raiz do domínio, mantenha /public_html/.
-    # Para um subdomínio/subpasta, ajuste o caminho (ex.: /public_html/carolina/).
-    - export DEPLOYPATH=/home/CPANEL_USER/public_html/
+    # Document root do domínio carolinamendanha.com.br nesta conta cPanel (hg3ads37).
+    - export DEPLOYPATH=/home2/hg3ads37/carolinamendanha.com.br
     - /bin/mkdir -p "$DEPLOYPATH"
     - /bin/cp index.html "$DEPLOYPATH"
     - /bin/cp -R assets "$DEPLOYPATH"
