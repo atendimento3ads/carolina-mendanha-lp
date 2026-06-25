@@ -907,13 +907,19 @@ footer { background:var(--navy-deep); color:rgba(255,255,255,.6); padding:64px 0
   <div class="container">
     <p class="footer-compliance">Conteúdo de caráter informativo, em conformidade com as normas aplicáveis à publicidade profissional da advocacia.</p>
     <div class="footer-bottom">
-      <p>© 2026 Ana Carolina Mendanha | Advocacia Trabalhista Empresarial</p>
-      <p class="footer-credit">Desenvolvido por <strong>3ADS</strong></p>
+      <p>© <span id="ano-atual">2026</span> Ana Carolina Mendanha | Advocacia Trabalhista Empresarial</p>
+      <p class="footer-credit">Desenvolvido por <a href="https://3ads.com.br/" target="_blank" rel="noopener"><strong>3ADS</strong></a></p>
     </div>
   </div>
 </footer>
 
 <script>
+/* ─── Ano atual no rodapé ─── */
+(function () {
+  var el = document.getElementById('ano-atual');
+  if (el) el.textContent = new Date().getFullYear();
+})();
+
 /* ─── FAQ ─── */
 function toggleFaq(btn) {
   const body = btn.nextElementSibling;
