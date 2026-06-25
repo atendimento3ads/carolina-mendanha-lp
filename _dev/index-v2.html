@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ana Carolina Mendanha · Defesa Trabalhista Empresarial — Empresas acionadas ou notificadas</title>
+<meta name="description" content="Defesa trabalhista para empresas acionadas, notificadas ou intimadas. Orientação jurídica para avaliar prazos, documentos e riscos antes de responder. Atendimento online para empresas em todo o Brasil.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════
+   ANA CAROLINA MENDANHA — v2 · "Dossiê Editorial"
+   Times New Roman editorial · mono case-labels · papel/bone · ouro acento
+════════════════════════════════════════════════ */
+:root{
+  --ink:#15130E;          /* tinta quase-preta quente */
+  --ink-soft:#3C382F;
+  --paper:#F3EFE6;        /* papel/bone */
+  --paper-2:#EBE5D8;
+  --paper-3:#E2DACA;
+  --cream:#FBF8F1;
+  --gold:#D9A748;
+  --gold-deep:#A87E2C;
+  --gold-soft:rgba(217,167,72,.14);
+  --line:rgba(21,19,14,.16);
+  --line-2:rgba(21,19,14,.30);
+  --muted:rgba(21,19,14,.58);
+  --serif:'Times New Roman', Times, Georgia, serif;
+  --sans:'Hanken Grotesk', system-ui, sans-serif;
+  --mono:'IBM Plex Mono', ui-monospace, monospace;
+  --ease:cubic-bezier(.2,.7,.3,1);
+  --maxw:1240px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--sans); background:var(--paper); color:var(--ink);
+  line-height:1.65; -webkit-font-smoothing:antialiased; font-size:16px;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit;}
+ul,ol{list-style:none;}
+::selection{background:var(--gold);color:var(--ink);}
+
+/* grão de papel */
+body::before{
+  content:''; position:fixed; inset:0; z-index:9998; pointer-events:none; opacity:.045;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ─── utilidades ─── */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+.mono{font-family:var(--mono);}
+.label{
+  font-family:var(--mono); font-size:11.5px; font-weight:500; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--gold-deep);
+  display:inline-flex; align-items:center; gap:10px;
+}
+.label::before{content:''; width:22px; height:1px; background:var(--gold-deep); display:inline-block;}
+.label.bare::before{display:none;}
+.serif{font-family:var(--serif);}
+h1,h2,h3,h4{font-family:var(--serif); font-weight:400; letter-spacing:-.01em; line-height:1.04;}
+.display{font-size:clamp(29px,3.2vw,44px);line-height:1.1;}
+.h2{font-size:clamp(25px,2.6vw,36px); line-height:1.12;}
+.h3{font-size:clamp(20px,1.8vw,25px); line-height:1.14;}
+p.lead{font-size:clamp(17px,1.5vw,20px); line-height:1.7; color:var(--ink-soft); max-width:46ch;}
+.muted{color:var(--muted);}
+
+.rule{height:1px;background:var(--line);width:100%;}
+.rule-gold{height:1px;background:var(--gold);width:100%;}
+
+/* ─── botões (arredondados) ─── */
+.btn{
+  display:inline-flex; align-items:center; gap:12px;
+  font-family:var(--sans); font-size:14.5px; font-weight:600; letter-spacing:.01em;
+  padding:16px 30px; border-radius:100px; cursor:pointer;
+  border:1.5px solid var(--ink); transition:all .35s var(--ease);
+}
+.btn .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);transition:all .35s var(--ease);}
+.btn .arr{transition:transform .35s var(--ease);}
+.btn:hover .arr{transform:translateX(5px);}
+.btn-solid{background:var(--ink);color:var(--cream);}
+.btn-solid:hover{background:var(--gold);border-color:var(--gold);color:var(--ink);}
+.btn-solid:hover .dot{background:var(--ink);}
+.btn-line{background:transparent;color:var(--ink);}
+.btn-line:hover{background:var(--ink);color:var(--cream);}
+.btn-line:hover .dot{background:var(--gold);}
+.on-dark .btn-solid{background:var(--gold);border-color:var(--gold);color:var(--ink);}
+.on-dark .btn-solid:hover{background:var(--cream);border-color:var(--cream);}
+.on-dark .btn-line{color:var(--cream);border-color:rgba(251,248,241,.4);}
+.on-dark .btn-line:hover{background:var(--cream);color:var(--ink);border-color:var(--cream);}
+.on-dark .btn-line .dot{background:var(--gold);}
+
+.micro{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--muted);}
+
+/* ─── reveal (sutil) ─── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s);}
+.reveal.in{opacity:1;transform:none;}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;}}
+
+/* ════════ HEADER ════════ */
+.topbar{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase;
+  background:var(--ink); color:rgba(251,248,241,.62); text-align:center; padding:8px 16px;
+}
+.topbar b{color:var(--gold);font-weight:500;}
+header{
+  position:sticky; top:0; z-index:100; background:rgba(243,239,230,.82);
+  backdrop-filter:saturate(150%) blur(14px); border-bottom:1px solid var(--line);
+}
+.headrow{display:flex;align-items:center;justify-content:space-between;height:82px;}
+.brand{display:flex;align-items:center;gap:14px;}
+.brand-mono{
+  width:46px;height:46px;border:1.5px solid var(--ink);border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:21px;flex-shrink:0;
+}
+.brand-name{font-family:var(--serif);font-size:20px;line-height:1.1;}
+.brand-sub{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);margin-top:3px;}
+.head-right{display:flex;align-items:center;gap:24px;}
+.head-note{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--muted);}
+.head-cta{
+  display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:var(--cream);
+  font-size:13.5px;font-weight:600;padding:11px 22px;border-radius:100px;transition:all .35s var(--ease);
+}
+.head-cta .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
+.head-cta:hover{background:var(--gold);color:var(--ink);}
+.head-cta:hover .dot{background:var(--ink);}
+
+/* ════════ HERO ════════ */
+.hero{position:relative;padding:clamp(60px,9vw,120px) 0 0;}
+.hero-grid{display:grid;grid-template-columns:1.5fr .75fr;gap:56px;align-items:start;}
+.hero-eyebrow{margin-bottom:30px;}
+.hero h1{margin-bottom:34px;}
+.hero h1 em{font-style:italic;color:var(--gold-deep);}
+.hero-lead{margin-bottom:40px;}
+.hero-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:18px;}
+.hero-micro{margin-top:6px;}
+
+/* painel "dossiê" */
+.dossie{
+  border:1px solid var(--line); border-radius:16px; background:var(--cream);
+  padding:30px 28px; position:relative; overflow:hidden;
+}
+.dossie::after{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--gold);}
+.dossie-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:24px;}
+.dossie-head .mono{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+.dossie-item{padding:18px 0;border-top:1px solid var(--line);display:flex;gap:16px;align-items:flex-start;}
+.dossie-item:first-of-type{border-top:none;}
+.dossie-num{font-family:var(--mono);font-size:12px;color:var(--gold-deep);padding-top:3px;}
+.dossie-item h4{font-family:var(--serif);font-size:17px;}
+.dossie-item p{font-size:13px;color:var(--muted);margin-top:3px;line-height:1.5;}
+
+.hero-foot{margin-top:clamp(48px,6vw,84px);border-top:1px solid var(--line);}
+
+/* faixa credenciais */
+.creds{display:grid;grid-template-columns:repeat(3,1fr);}
+.cred{padding:40px 0;border-left:1px solid var(--line);padding-left:30px;}
+.cred:first-child{border-left:none;padding-left:0;}
+.cred .mono{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);display:block;margin-bottom:14px;}
+.cred strong{font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.4vw,32px);display:block;line-height:1;}
+.cred span{font-size:14px;color:var(--muted);display:block;margin-top:10px;max-width:24ch;}
+
+/* ════════ SECTION base ════════ */
+section{position:relative;}
+.sec{padding:clamp(76px,10vw,140px) 0;}
+.sec-index{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--gold-deep);}
+
+/* ════════ BLOCO 2 — RECONHECIMENTO ════════ */
+.recog{background:var(--paper-2);}
+.recog-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(40px,6vw,90px);align-items:start;}
+.recog-left h2{margin-top:22px;}
+.recog-quote{
+  font-family:var(--serif);font-size:clamp(19px,1.8vw,24px);line-height:1.4;
+  padding-left:28px;border-left:2px solid var(--gold);margin-bottom:30px;
+}
+.recog-right p{font-size:17px;line-height:1.8;color:var(--ink-soft);margin-bottom:20px;}
+.recog-right p strong{color:var(--ink);font-weight:600;}
+
+/* ════════ BLOCO 3 — SITUAÇÕES (ledger / índice) ════════ */
+.cases-head{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;margin-bottom:8px;}
+.cases-head h2{margin-top:20px;max-width:16ch;}
+.cases-head .lead{margin-bottom:6px;}
+.ledger{margin-top:18px;border-top:1px solid var(--line-2);}
+.lrow{
+  display:grid;grid-template-columns:84px minmax(230px,1fr) 1.5fr;gap:36px;align-items:start;
+  padding:30px 0;border-bottom:1px solid var(--line);transition:padding .4s var(--ease);
+}
+.lnum{font-family:var(--mono);font-size:15px;color:var(--gold-deep);padding-top:6px;}
+.ltitle .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:9px;}
+.ltitle h3{font-size:clamp(19px,1.6vw,22px);line-height:1.14;}
+.ltitle .ic{margin-top:14px;color:var(--gold-deep);}
+.ltitle .ic svg{width:22px;height:22px;}
+.ldesc{font-size:15px;line-height:1.7;color:var(--ink-soft);padding-top:4px;}
+.cases-cta{margin-top:50px;}
+
+/* ════════ BLOCO 4 — PRIMEIRO CONTATO (escuro) ════════ */
+.first{background:var(--ink);color:var(--cream);}
+.first .label{color:var(--gold);}
+.first .label::before{background:var(--gold);}
+.first h2{color:var(--cream);}
+.first-intro{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,5vw,80px);align-items:end;margin-bottom:clamp(50px,6vw,80px);}
+.first-intro p{font-size:17px;line-height:1.8;color:rgba(251,248,241,.66);}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(251,248,241,.16);}
+.step{padding:38px 34px 38px 0;border-left:1px solid rgba(251,248,241,.16);padding-left:34px;position:relative;}
+.step:first-child{border-left:none;padding-left:0;}
+.step-rom{font-family:var(--serif);font-size:42px;color:var(--gold);line-height:1;margin-bottom:22px;}
+.step h4{font-family:var(--serif);font-size:21px;color:var(--cream);margin-bottom:12px;}
+.step p{font-size:14.5px;color:rgba(251,248,241,.6);line-height:1.7;}
+.first-cta{margin-top:clamp(50px,6vw,76px);display:flex;align-items:center;gap:26px;flex-wrap:wrap;}
+
+/* ════════ BLOCO 5 — AUTORIDADE ════════ */
+.auth-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(40px,6vw,84px);align-items:center;}
+.auth-img{
+  aspect-ratio:4/5;border-radius:18px;overflow:hidden;position:relative;
+  background:linear-gradient(150deg,var(--paper-3),var(--cream));
+  border:1px solid var(--line);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:30px;
+}
+.auth-img svg{width:52px;height:52px;color:var(--gold-deep);opacity:.65;}
+.auth-img .cap{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.auth-img::after{content:'';position:absolute;inset:14px;border:1px solid var(--line);border-radius:10px;pointer-events:none;}
+.auth-content h2{margin:22px 0 30px;}
+.auth-content p{font-size:16.5px;line-height:1.8;color:var(--ink-soft);margin-bottom:18px;}
+.auth-content p strong{color:var(--ink);font-weight:600;}
+.auth-bullets{margin-top:34px;display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line);}
+.auth-bullet{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);}
+.auth-bullet .bi{flex-shrink:0;width:30px;height:30px;border-radius:50%;background:var(--gold-soft);display:flex;align-items:center;justify-content:center;color:var(--gold-deep);}
+.auth-bullet .bi svg{width:15px;height:15px;}
+.auth-bullet span.t{font-family:var(--serif);font-size:18px;}
+
+/* ════════ BLOCO 6 — DIFERENCIAÇÃO ════════ */
+.diff{background:var(--paper-2);}
+.diff-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(40px,6vw,90px);align-items:start;}
+.diff-left h2{margin-top:22px;}
+.diff-left p{font-size:16px;line-height:1.8;color:var(--ink-soft);margin-top:24px;max-width:40ch;}
+.diff-points{display:flex;flex-direction:column;}
+.dpoint{display:grid;grid-template-columns:64px 1fr;gap:24px;padding:30px 0;border-top:1px solid var(--line);}
+.dpoint:first-child{border-top:none;padding-top:0;}
+.dpoint .rn{font-family:var(--serif);font-size:26px;color:var(--gold-deep);line-height:1;}
+.dpoint h4{font-family:var(--serif);font-size:21px;margin-bottom:10px;}
+.dpoint p{font-size:15px;line-height:1.7;color:var(--ink-soft);}
+
+/* ════════ BLOCO 7 — PREVENÇÃO (escuro, statement) ════════ */
+.prev{background:var(--ink);color:var(--cream);text-align:center;}
+.prev .inner{max-width:820px;margin:0 auto;}
+.prev .label{color:var(--gold);justify-content:center;}
+.prev h2{color:var(--cream);margin:24px 0 30px;}
+.prev p{font-size:17px;line-height:1.85;color:rgba(251,248,241,.66);max-width:62ch;margin:0 auto 18px;}
+.prev .btn-wrap{margin-top:38px;}
+
+/* ════════ BLOCO 8 — FAQ ════════ */
+.faq-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:clamp(40px,6vw,80px);align-items:start;}
+.faq-aside{position:sticky;top:120px;}
+.faq-aside h2{margin:22px 0 24px;}
+.faq-aside p{font-size:15.5px;line-height:1.75;color:var(--ink-soft);max-width:34ch;}
+.faq-list{border-top:1px solid var(--line-2);}
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-q{
+  width:100%;background:none;border:none;cursor:pointer;text-align:left;
+  display:grid;grid-template-columns:54px 1fr 30px;gap:18px;align-items:center;
+  padding:24px 0;font-family:var(--serif);font-size:clamp(17px,1.5vw,20px);color:var(--ink);
+  transition:color .3s var(--ease);
+}
+.faq-q .qn{font-family:var(--mono);font-size:12px;color:var(--gold-deep);}
+.faq-q .qx{justify-self:end;width:26px;height:26px;border:1px solid var(--line-2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:18px;color:var(--gold-deep);transition:all .35s var(--ease);}
+.faq-q.open{color:var(--gold-deep);}
+.faq-q.open .qx{background:var(--gold);color:var(--ink);border-color:var(--gold);transform:rotate(135deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease);}
+.faq-a.open{max-height:360px;}
+.faq-a .inner{padding:0 30px 28px 72px;font-size:15.5px;line-height:1.8;color:var(--ink-soft);}
+
+/* ════════ BLOCO 9 — CTA FINAL ════════ */
+.final{background:var(--ink);color:var(--cream);text-align:center;position:relative;overflow:hidden;padding:clamp(90px,11vw,150px) 0;}
+.final::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:120%;height:140%;background:radial-gradient(ellipse 40% 50% at 50% 50%,rgba(217,167,72,.10),transparent 70%);}
+.final .inner{position:relative;z-index:1;max-width:880px;margin:0 auto;}
+.final .label{color:var(--gold);justify-content:center;}
+.final h2{color:var(--cream);font-size:clamp(28px,3.4vw,46px);margin:26px 0 28px;}
+.final p{font-size:18px;line-height:1.8;color:rgba(251,248,241,.66);max-width:60ch;margin:0 auto 42px;}
+.final .micro{color:rgba(251,248,241,.5);margin-top:20px;}
+
+/* ════════ FOOTER ════════ */
+footer{background:#0E0C08;color:rgba(251,248,241,.55);padding:80px 0 40px;}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:48px;padding-bottom:46px;border-bottom:1px solid rgba(251,248,241,.12);}
+.foot-brand .brand-mono{border-color:rgba(251,248,241,.4);color:var(--cream);margin-bottom:18px;}
+.foot-brand .fn{font-family:var(--serif);font-size:24px;color:var(--cream);}
+.foot-brand .fs{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-top:8px;}
+.foot-brand .oab{font-family:var(--mono);font-size:12px;color:rgba(251,248,241,.45);margin-top:18px;}
+.foot-col h5{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+.foot-col a,.foot-col p{display:block;font-size:14px;color:rgba(251,248,241,.6);line-height:2;transition:color .3s var(--ease);}
+.foot-col a:hover{color:var(--gold);}
+.foot-bottom{padding-top:26px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.foot-bottom p{font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:rgba(251,248,241,.34);line-height:1.7;max-width:70ch;}
+
+/* ════════ RESPONSIVE ════════ */
+@media (max-width:1040px){
+  .hero-grid{grid-template-columns:1fr;gap:48px;}
+  .dossie{max-width:480px;}
+  .recog-grid,.first-intro,.auth-grid,.diff-grid,.faq-grid{grid-template-columns:1fr;}
+  .faq-aside{position:static;}
+  .cases-head{grid-template-columns:1fr;align-items:start;}
+}
+@media (max-width:760px){
+  .wrap{padding:0 22px;}
+  .head-note{display:none;}
+  .creds{grid-template-columns:1fr;}
+  .cred{border-left:none;padding-left:0;border-top:1px solid var(--line);}
+  .cred:first-child{border-top:none;}
+  .lrow{grid-template-columns:1fr;gap:10px;padding:26px 0;}
+  .lnum{padding-top:0;}
+  .steps,.diff-points{grid-template-columns:1fr;}
+  .step{border-left:none;padding-left:0;border-top:1px solid rgba(251,248,241,.16);padding-top:32px;}
+  .step:first-child{border-top:none;}
+  .foot-grid{grid-template-columns:1fr;gap:34px;}
+  .faq-q{grid-template-columns:36px 1fr 26px;gap:12px;}
+  .faq-a .inner{padding-left:48px;}
+  .brand-sub{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">Ana Carolina Mendanha · <b>Advocacia Trabalhista Empresarial</b> · Atendimento online — empresas em todo o Brasil</div>
+
+<!-- HEADER -->
+<header>
+  <div class="wrap headrow">
+    <a href="#topo" class="brand">
+      <span class="brand-mono">AM</span>
+      <span>
+        <span class="brand-name">Ana Carolina Mendanha</span>
+        <span class="brand-sub">Direito do Trabalho · Defesa empresarial</span>
+      </span>
+    </a>
+    <div class="head-right">
+      <span class="head-note">OAB/UF nº XXXXX</span>
+      <a href="#contato" class="head-cta"><span class="dot"></span>Falar com a advogada</a>
+    </div>
+  </div>
+</header>
+
+<!-- ════════ HERO ════════ -->
+<section class="hero" id="topo">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-eyebrow reveal in" style="--d:.05s"><span class="label">Defesa trabalhista · Empregador</span></div>
+        <h1 class="display reveal in" style="--d:.12s">Defesa trabalhista para empresas <em>acionadas ou notificadas</em></h1>
+        <p class="lead hero-lead reveal in" style="--d:.2s">Orientação jurídica para avaliar prazos, documentos e riscos antes de responder a uma ação, notificação ou intimação trabalhista.</p>
+        <div class="hero-actions reveal in" style="--d:.28s">
+          <a href="#contato" class="btn btn-solid"><span class="dot"></span>Falar com a advogada <span class="arr">→</span></a>
+          <a href="#situacoes" class="btn btn-line">Ver situações atendidas</a>
+        </div>
+        <p class="micro hero-micro reveal in" style="--d:.34s">Atendimento online para empresas em todo o Brasil</p>
+      </div>
+
+      <aside class="dossie reveal in" style="--d:.3s">
+        <div class="dossie-head">
+          <span class="mono">Dossiê — primeira análise</span>
+          <span class="mono">A.C.M.</span>
+        </div>
+        <div class="dossie-item">
+          <span class="dossie-num">01</span>
+          <div><h4>Prazos em aberto</h4><p>O que está correndo e o que ainda pode ser respondido.</p></div>
+        </div>
+        <div class="dossie-item">
+          <span class="dossie-num">02</span>
+          <div><h4>Documentos da defesa</h4><p>O que pode influenciar o resultado da demanda.</p></div>
+        </div>
+        <div class="dossie-item">
+          <span class="dossie-num">03</span>
+          <div><h4>Risco da demanda</h4><p>Leitura honesta antes de qualquer decisão.</p></div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- faixa credenciais -->
+    <div class="hero-foot reveal" >
+      <div class="creds">
+        <div class="cred">
+          <span class="mono">Experiência</span>
+          <strong>18 anos</strong>
+          <span>de atuação em Direito do Trabalho.</span>
+        </div>
+        <div class="cred">
+          <span class="mono">Posição</span>
+          <strong>Foco</strong>
+          <span>na defesa de quem emprega.</span>
+        </div>
+        <div class="cred">
+          <span class="mono">Relação</span>
+          <strong>Direto</strong>
+          <span>contato com a advogada responsável.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ BLOCO 2 — RECONHECIMENTO ════════ -->
+<section class="sec recog">
+  <div class="wrap">
+    <div class="recog-grid">
+      <div class="recog-left reveal">
+        <span class="sec-index">§ 01 — Quando a empresa precisa responder</span>
+        <h2 class="h2">Uma demanda trabalhista não deve ser tratada no improviso</h2>
+      </div>
+      <div class="recog-right reveal" style="--d:.1s">
+        <p class="recog-quote">A primeira análise serve para organizar o cenário e definir uma condução compatível com a realidade da empresa.</p>
+        <p>Ao receber uma ação trabalhista, notificação extrajudicial ou intimação, a empresa precisa entender <strong>o que está sendo cobrado, quais prazos estão em aberto</strong> e quais documentos podem influenciar a defesa.</p>
+        <p>Responder sem essa leitura pode levar a decisões precipitadas, como encaminhar informações incompletas, negociar antes de avaliar o risco ou chegar à audiência sem preparo adequado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ BLOCO 3 — SITUAÇÕES (índice) ════════ -->
+<section class="sec" id="situacoes">
+  <div class="wrap">
+    <div class="cases-head reveal">
+      <div>
+        <span class="sec-index">§ 02 — Demandas em andamento ou em fase de resposta</span>
+        <h2 class="h2">Atuação para empresas que foram acionadas, notificadas ou intimadas</h2>
+      </div>
+      <p class="lead">A defesa considera o estágio da demanda, os pedidos, os documentos disponíveis e o histórico da relação de trabalho. Cada caso pede uma leitura própria.</p>
+    </div>
+
+    <ol class="ledger">
+      <li class="lrow reveal">
+        <span class="lnum">01</span>
+        <div class="ltitle">
+          <span class="tag">Ação · Reclamação</span>
+          <h3>Defesa em ação trabalhista</h3>
+          <span class="ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        </div>
+        <p class="ldesc">Atuação na defesa da empresa em reclamações trabalhistas movidas por empregados ou ex-empregados, com análise dos pedidos, documentos e etapas do processo.</p>
+      </li>
+      <li class="lrow reveal">
+        <span class="lnum">02</span>
+        <div class="ltitle">
+          <span class="tag">Notificação extrajudicial</span>
+          <h3>Resposta a notificação trabalhista</h3>
+          <span class="ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg></span>
+        </div>
+        <p class="ldesc">Orientação para empresas que receberam notificação extrajudicial e precisam avaliar como responder, quais documentos reunir e quais riscos observar.</p>
+      </li>
+      <li class="lrow reveal">
+        <span class="lnum">03</span>
+        <div class="ltitle">
+          <span class="tag">Intimação · Comunicação</span>
+          <h3>Intimação recebida pela empresa</h3>
+          <span class="ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg></span>
+        </div>
+        <p class="ldesc">Análise da intimação ou comunicação judicial, com orientação sobre prazos, providências necessárias e próximos passos da defesa.</p>
+      </li>
+      <li class="lrow reveal">
+        <span class="lnum">04</span>
+        <div class="ltitle">
+          <span class="tag">Audiência designada</span>
+          <h3>Audiência trabalhista marcada</h3>
+          <span class="ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></span>
+        </div>
+        <p class="ldesc">Preparação e acompanhamento da empresa em audiências presenciais ou online, com orientação sobre documentos, postura e pontos de atenção.</p>
+      </li>
+      <li class="lrow reveal">
+        <span class="lnum">05</span>
+        <div class="ltitle">
+          <span class="tag">Risco · Prova</span>
+          <h3>Análise de risco da demanda</h3>
+          <span class="ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg></span>
+        </div>
+        <p class="ldesc">Avaliação dos pedidos apresentados, provas disponíveis, documentos internos e histórico da relação de trabalho para orientar a condução do caso.</p>
+      </li>
+      <li class="lrow reveal">
+        <span class="lnum">06</span>
+        <div class="ltitle">
+          <span class="tag">Acordo · Negociação</span>
+          <h3>Acordos e negociações</h3>
+          <span class="ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg></span>
+        </div>
+        <p class="ldesc">Análise dos cenários possíveis antes de negociar, considerando riscos, valores discutidos, momento processual e impacto para a empresa.</p>
+      </li>
+      <li class="lrow reveal">
+        <span class="lnum">07</span>
+        <div class="ltitle">
+          <span class="tag">Vínculo · Verbas</span>
+          <h3>Pedidos de vínculo, horas extras e verbas</h3>
+          <span class="ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+        </div>
+        <p class="ldesc">Atuação em demandas envolvendo vínculo empregatício, jornada de trabalho, horas extras, rescisão, adicionais e demais verbas discutidas em ações trabalhistas.</p>
+      </li>
+    </ol>
+
+    <div class="cases-cta reveal">
+      <a href="#contato" class="btn btn-solid"><span class="dot"></span>Falar com a advogada <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ BLOCO 4 — PRIMEIRO CONTATO ════════ -->
+<section class="sec first on-dark">
+  <div class="wrap">
+    <div class="first-intro">
+      <div class="reveal">
+        <span class="label">Antes da próxima decisão</span>
+        <h2 class="h2" style="margin-top:22px">O primeiro contato ajuda a entender o que a empresa recebeu</h2>
+      </div>
+      <p class="reveal" style="--d:.1s">Nem toda demanda trabalhista exige a mesma resposta. Uma notificação extrajudicial, uma intimação, uma audiência marcada ou uma ação já em andamento pedem leituras diferentes. No primeiro contato, a situação é compreendida para identificar o estágio do caso e os pontos que precisam ser avaliados.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-rom">I</div>
+        <h4>Você informa a situação</h4>
+        <p>A empresa relata se recebeu uma ação trabalhista, notificação, intimação, comunicação judicial ou se já existe audiência designada.</p>
+      </div>
+      <div class="step reveal" style="--d:.1s">
+        <div class="step-rom">II</div>
+        <h4>O caso é lido inicialmente</h4>
+        <p>São observados prazos, pedidos apresentados, documentos disponíveis e o momento em que a demanda se encontra.</p>
+      </div>
+      <div class="step reveal" style="--d:.2s">
+        <div class="step-rom">III</div>
+        <h4>A condução é orientada</h4>
+        <p>Com base nas informações iniciais, são indicados os próximos passos para resposta, defesa ou acompanhamento da empresa.</p>
+      </div>
+    </div>
+
+    <div class="first-cta reveal">
+      <a href="#contato" class="btn btn-solid"><span class="dot"></span>Falar com a advogada <span class="arr">→</span></a>
+      <span class="micro">Envie uma mensagem para relatar a situação da empresa</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ BLOCO 5 — AUTORIDADE ════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="auth-grid">
+      <!-- placeholder para imagem -->
+      <div class="auth-img reveal">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+        <span class="cap">Espaço para imagem</span>
+      </div>
+      <div class="auth-content reveal" style="--d:.1s">
+        <span class="sec-index">§ 03 — Experiência ao lado de quem emprega</span>
+        <h2 class="h2">18 anos de atuação em Direito do Trabalho com foco em empresas e empregadores</h2>
+        <p>Ana Carolina Mendanha atua há 18 anos em Direito do Trabalho, com foco na defesa e orientação de empresas e empregadores.</p>
+        <p>Sua atuação considera a realidade de quem contrata, administra equipes e precisa responder a demandas trabalhistas com clareza técnica. Acompanha casos envolvendo ações trabalhistas, notificações, audiências, acordos, pedidos de vínculo, horas extras, verbas rescisórias e outros temas recorrentes na rotina empresarial.</p>
+        <p>O relacionamento é direto do início ao fim. <strong>A empresa fala com a advogada responsável pelo caso</strong> e recebe acompanhamento próximo nas etapas relevantes da defesa.</p>
+        <ul class="auth-bullets">
+          <li class="auth-bullet"><span class="bi"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="t">18 anos de atuação em Direito do Trabalho</span></li>
+          <li class="auth-bullet"><span class="bi"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="t">Foco no empregador</span></li>
+          <li class="auth-bullet"><span class="bi"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="t">Atendimento direto</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ BLOCO 6 — DIFERENCIAÇÃO ════════ -->
+<section class="sec diff">
+  <div class="wrap">
+    <div class="diff-grid">
+      <div class="diff-left reveal">
+        <span class="sec-index">§ 04 — O processo não conta tudo sozinho</span>
+        <h2 class="h2">A defesa precisa considerar a rotina da empresa</h2>
+        <p>Uma reclamação trabalhista costuma envolver mais do que os pedidos descritos na ação. É preciso olhar para documentos, controles internos, histórico da relação de trabalho, práticas da empresa e o contexto em que a demanda surgiu — uma leitura mais coerente com o caso concreto.</p>
+      </div>
+      <div class="diff-points reveal" style="--d:.1s">
+        <div class="dpoint">
+          <span class="rn">i</span>
+          <div><h4>Leitura pelo lado do empregador</h4><p>A análise considera a posição da empresa, sua rotina de gestão, os documentos existentes e os impactos práticos da demanda.</p></div>
+        </div>
+        <div class="dpoint">
+          <span class="rn">ii</span>
+          <div><h4>Orientação sem promessa de resultado</h4><p>O caso é tratado com análise honesta sobre riscos, possibilidades e caminhos juridicamente adequados.</p></div>
+        </div>
+        <div class="dpoint">
+          <span class="rn">iii</span>
+          <div><h4>Acompanhamento próximo</h4><p>A empresa mantém contato direto com a advogada responsável e recebe orientação sobre as etapas relevantes da defesa.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ BLOCO 7 — PREVENÇÃO ════════ -->
+<section class="sec prev on-dark">
+  <div class="wrap">
+    <div class="inner reveal">
+      <span class="label bare">Depois da demanda atual</span>
+      <h2 class="h2">O processo pode revelar pontos de atenção na rotina trabalhista</h2>
+      <p>Muitas ações trabalhistas começam em falhas de documentação, contratos desatualizados, controles internos frágeis ou práticas que se repetem sem revisão.</p>
+      <p>Após a defesa da demanda atual, também é possível orientar a empresa na revisão de contratos, documentos, rotinas trabalhistas e práticas de gestão para reduzir novos riscos.</p>
+      <div class="btn-wrap"><a href="#contato" class="btn btn-line">Falar com a advogada</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ BLOCO 8 — FAQ ════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="faq-grid">
+      <div class="faq-aside reveal">
+        <span class="sec-index">§ 05 — Antes de enviar sua mensagem</span>
+        <h2 class="h2">O que a empresa precisa entender ao receber uma demanda</h2>
+        <p>Algumas dúvidas aparecem logo que a empresa recebe uma ação, notificação ou intimação. As respostas abaixo ajudam a organizar esse primeiro momento.</p>
+      </div>
+      <div class="faq-list reveal" style="--d:.1s">
+        <div class="faq-item">
+          <button class="faq-q" onclick="tg(this)"><span class="qn">01</span><span>Minha empresa recebeu uma notificação trabalhista. O que fazer?</span><span class="qx">+</span></button>
+          <div class="faq-a"><div class="inner">O primeiro passo é avaliar o conteúdo da notificação, os prazos indicados, os documentos relacionados e a forma mais adequada de resposta.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="tg(this)"><span class="qn">02</span><span>Já existe uma ação trabalhista contra a empresa. Ainda dá para buscar defesa?</span><span class="qx">+</span></button>
+          <div class="faq-a"><div class="inner">Sim. Mesmo com o processo iniciado, é possível analisar os pedidos, o estágio da ação, os documentos disponíveis e os próximos passos processuais.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="tg(this)"><span class="qn">03</span><span>Minha empresa já tem audiência marcada. Como proceder?</span><span class="qx">+</span></button>
+          <div class="faq-a"><div class="inner">Com audiência designada, é necessário analisar o processo, preparar documentos e orientar a empresa sobre os cuidados dessa etapa.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="tg(this)"><span class="qn">04</span><span>Preciso enviar documentos no primeiro contato?</span><span class="qx">+</span></button>
+          <div class="faq-a"><div class="inner">No primeiro contato, podem ser solicitadas informações básicas sobre a situação. A análise documental acontece conforme a necessidade do caso.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="tg(this)"><span class="qn">05</span><span>A empresa pode ser atendida fora de Goiânia?</span><span class="qx">+</span></button>
+          <div class="faq-a"><div class="inner">Sim. O atendimento pode ser realizado online, permitindo acompanhar empresas em diferentes regiões do Brasil.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="tg(this)"><span class="qn">06</span><span>O atendimento é feito diretamente com a advogada?</span><span class="qx">+</span></button>
+          <div class="faq-a"><div class="inner">Sim. O contato é feito diretamente com a advogada responsável pela condução do caso.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="tg(this)"><span class="qn">07</span><span>A atuação também inclui prevenção trabalhista?</span><span class="qx">+</span></button>
+          <div class="faq-a"><div class="inner">Sim. Além da defesa em ações, notificações e audiências, também há atuação preventiva para empresas que precisam revisar contratos, documentos e rotinas trabalhistas.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ BLOCO 9 — CTA FINAL ════════ -->
+<section class="final on-dark" id="contato">
+  <div class="wrap">
+    <div class="inner reveal">
+      <span class="label">Se a demanda já chegou, o próximo passo é entender o caso</span>
+      <h2 class="h2">Fale sobre a defesa da sua empresa</h2>
+      <p>Se a sua empresa recebeu uma ação, notificação ou intimação trabalhista, envie uma mensagem para relatar a situação. A partir do primeiro contato, será possível entender o estágio da demanda, os documentos envolvidos e as medidas que precisam ser avaliadas para conduzir a defesa.</p>
+      <a href="#" class="btn btn-solid"><span class="dot"></span>Falar com a advogada <span class="arr">→</span></a>
+      <p class="micro">Atendimento online para empresas em todo o Brasil</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand-mono">AM</div>
+        <div class="fn">Ana Carolina Mendanha</div>
+        <div class="fs">Advocacia Trabalhista Empresarial</div>
+        <div class="oab">OAB/UF nº XXXXX</div>
+      </div>
+      <div class="foot-col">
+        <h5>Contato</h5>
+        <a href="#">WhatsApp profissional</a>
+        <a href="#">E-mail profissional</a>
+        <a href="https://instagram.com/carolmendanhaadvogada" target="_blank" rel="noopener">@carolmendanhaadvogada</a>
+      </div>
+      <div class="foot-col">
+        <h5>Localização</h5>
+        <p>Goiânia, GO</p>
+        <p>Atendimento online para empresas<br>em todo o Brasil</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>Conteúdo de caráter informativo, em conformidade com as normas aplicáveis à publicidade profissional da advocacia.</p>
+      <p>© 2026 Ana Carolina Mendanha</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// FAQ
+function tg(b){
+  var a=b.nextElementSibling, open=b.classList.contains('open');
+  document.querySelectorAll('.faq-q').forEach(function(q){q.classList.remove('open');q.nextElementSibling.classList.remove('open');});
+  if(!open){b.classList.add('open');a.classList.add('open');}
+}
+// reveal sutil
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.12, rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal:not(.in)').forEach(function(el){io.observe(el);});
+</script>
+</body>
+</html>
