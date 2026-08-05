@@ -1,4 +1,22 @@
 /* LP Carolina Mendanha — comportamento (carregado via bootstrap para compatibilidade com CSP forte) */
+
+/* Conversão "Clique WhatsApp" (Google Ads) — dispara no clique real, não no carregamento
+   da página, para evitar contagem duplicada em recarregamentos de /obrigado. */
+window.gtag_report_conversion = function (url) {
+  var callback = function () {
+    if (typeof url !== 'undefined') window.location = url;
+  };
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'conversion', {
+      'send_to': 'AW-17330897187/4pRSCI7Hw9wcEKOCgshA',
+      'event_callback': callback
+    });
+  } else {
+    callback();
+  }
+  return false;
+};
+
 (function () {
   function init() {
     /* ─── Ano atual no rodapé ─── */
@@ -320,7 +338,7 @@
         }
 
         window.open(url, '_blank', 'noopener');
-        window.location.href = '/obrigado';
+        window.gtag_report_conversion('/obrigado');
       });
 
       showStep('nome', false);
