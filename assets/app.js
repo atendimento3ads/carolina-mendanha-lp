@@ -163,23 +163,42 @@
         showStep(STEPS[idx - 1]);
       }
 
+      /* Utilitário: liga vários eventos de uma vez (cobre digitação, colar e
+         autopreenchimento do navegador/gerenciador de senhas, que nem sempre
+         disparam 'input'). O botão nunca fica com o atributo disabled — assim
+         o clique sempre funciona; a validação real acontece no clique. */
+      function onAny(el, events, fn) {
+        events.forEach(function (ev) { el.addEventListener(ev, fn); });
+      }
+      function showFieldError(input, errorEl, show) {
+        input.classList.toggle('error', !!show);
+        if (errorEl) errorEl.hidden = !show;
+        if (show) {
+          input.classList.remove('error');
+          void input.offsetWidth; /* reinicia a animação de shake se já estava marcado como erro */
+          input.classList.add('error');
+        }
+      }
+
       /* Nome */
       var nomeInput = document.getElementById('f-nome');
       var nomeNext = form.querySelector('.f-step[data-step="nome"] [data-next]');
-      function checkNome() {
-        var valid = nomeInput.value.trim().length >= 2;
-        nomeNext.disabled = !valid;
-        return valid;
-      }
-      nomeInput.addEventListener('input', checkNome);
+      var nomeError = document.getElementById('f-nome-error');
+      function nomeValid() { return nomeInput.value.trim().length >= 2; }
+      function refreshNomeButton() { nomeNext.classList.toggle('is-inactive', !nomeValid()); if (nomeValid()) showFieldError(nomeInput, nomeError, false); }
+      onAny(nomeInput, ['input', 'change', 'keyup', 'blur', 'paste', 'animationstart'], refreshNomeButton);
       nomeInput.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' && checkNome()) { e.preventDefault(); state.nome = nomeInput.value.trim(); next(); }
+        if (e.key === 'Enter') { e.preventDefault(); nomeNext.click(); }
       });
-      nomeNext.addEventListener('click', function () { if (checkNome()) { state.nome = nomeInput.value.trim(); next(); } });
+      nomeNext.addEventListener('click', function () {
+        if (nomeValid()) { state.nome = nomeInput.value.trim(); next(); }
+        else { showFieldError(nomeInput, nomeError, true); nomeInput.focus(); }
+      });
 
       /* WhatsApp */
       var waInput = document.getElementById('f-whatsapp');
       var waNext = form.querySelector('.f-step[data-step="whatsapp"] [data-next]');
+      var waError = document.getElementById('f-whatsapp-error');
       function maskPhone(v) {
         var d = v.replace(/\D/g, '').slice(0, 11);
         if (d.length > 10) return d.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3').replace(/-$/, '');
@@ -188,17 +207,18 @@
         if (d.length > 0) return '(' + d;
         return '';
       }
-      function checkWhatsapp() {
-        var digits = waInput.value.replace(/\D/g, '');
-        var valid = digits.length >= 10;
-        waNext.disabled = !valid;
-        return valid;
-      }
-      waInput.addEventListener('input', function () { waInput.value = maskPhone(waInput.value); checkWhatsapp(); });
+      function waValid() { return waInput.value.replace(/\D/g, '').length >= 10; }
+      function refreshWaButton() { waNext.classList.toggle('is-inactive', !waValid()); if (waValid()) showFieldError(waInput, waError, false); }
+      onAny(waInput, ['change', 'keyup', 'blur', 'animationstart'], refreshWaButton);
+      waInput.addEventListener('input', function () { waInput.value = maskPhone(waInput.value); refreshWaButton(); });
+      waInput.addEventListener('paste', function () { window.requestAnimationFrame(function () { waInput.value = maskPhone(waInput.value); refreshWaButton(); }); });
       waInput.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' && checkWhatsapp()) { e.preventDefault(); state.whatsapp = waInput.value.trim(); next(); }
+        if (e.key === 'Enter') { e.preventDefault(); waNext.click(); }
       });
-      waNext.addEventListener('click', function () { if (checkWhatsapp()) { state.whatsapp = waInput.value.trim(); next(); } });
+      waNext.addEventListener('click', function () {
+        if (waValid()) { state.whatsapp = waInput.value.trim(); next(); }
+        else { showFieldError(waInput, waError, true); waInput.focus(); }
+      });
 
       /* Radios com auto-avanço */
       function wireRadioGroup(name, onPick) {

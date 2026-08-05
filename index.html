@@ -170,6 +170,8 @@ h3.title { font-size:clamp(22px,2.4vw,30px); }
 .btn-primary { background:var(--gold-grad); color:var(--navy-deep); box-shadow:0 10px 26px rgba(217,167,72,.32); }
 .btn-primary:hover { transform:translateY(-3px); box-shadow:0 16px 36px rgba(217,167,72,.42); }
 .btn-primary:disabled { opacity:.42; cursor:not-allowed; box-shadow:none; transform:none !important; }
+.btn-primary.is-inactive { opacity:.6; box-shadow:none; }
+.btn-primary.is-inactive:hover { transform:none; box-shadow:none; }
 .btn-ghost { background:transparent; color:var(--black); border-color:rgba(57,61,93,.22); }
 .btn-ghost:hover { background:var(--black); color:var(--white); border-color:var(--black); transform:translateY(-3px); }
 .btn-ghost.light { color:var(--white); border-color:rgba(255,255,255,.3); }
@@ -454,6 +456,15 @@ section { padding:112px 0; position:relative; }
   transition:border-color var(--transition), background var(--transition);
 }
 .f-input:focus { outline:none; border-color:var(--gold); background:var(--white); }
+.f-input.error { border-color:#D64545; animation:f-shake .32s linear; }
+.f-error { display:block; font-size:13px; color:#D64545; margin-top:8px; }
+.f-error[hidden] { display:none; }
+@keyframes f-shake { 0%,100% { transform:translateX(0); } 25% { transform:translateX(-5px); } 75% { transform:translateX(5px); } }
+/* Detecta autopreenchimento do navegador (Chrome/Safari não disparam 'input' nesse caso) */
+@keyframes f-autofill-on { from {} to {} }
+@keyframes f-autofill-off { from {} to {} }
+.f-input:-webkit-autofill { animation-name:f-autofill-on; animation-duration:.001s; }
+.f-input:not(:-webkit-autofill) { animation-name:f-autofill-off; animation-duration:.001s; }
 .f-options { display:flex; flex-direction:column; gap:11px; }
 .f-option {
   position:relative; display:block; border:1.5px solid var(--line); border-radius:14px;
@@ -1024,8 +1035,9 @@ footer { background:var(--navy-deep); color:rgba(255,255,255,.6); padding:64px 0
               <h3>Qual é o seu nome?</h3>
               <p class="f-hint">Para eu saber como me dirigir a você.</p>
               <input class="f-input" type="text" id="f-nome" name="nome" autocomplete="name" placeholder="Seu nome completo">
+              <p class="f-error" id="f-nome-error" hidden>Digite seu nome para continuar.</p>
               <div class="f-nav" style="justify-content:flex-end;">
-                <button type="button" class="btn btn-primary" data-next disabled>Continuar <span class="arrow">→</span></button>
+                <button type="button" class="btn btn-primary is-inactive" data-next>Continuar <span class="arrow">→</span></button>
               </div>
             </div>
 
@@ -1033,9 +1045,10 @@ footer { background:var(--navy-deep); color:rgba(255,255,255,.6); padding:64px 0
               <h3>Qual o seu WhatsApp?</h3>
               <p class="f-hint">Usado apenas para dar continuidade à conversa.</p>
               <input class="f-input" type="tel" id="f-whatsapp" name="whatsapp" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000">
+              <p class="f-error" id="f-whatsapp-error" hidden>Digite um WhatsApp válido com DDD para continuar.</p>
               <div class="f-nav">
                 <button type="button" class="f-back" data-back>← Voltar</button>
-                <button type="button" class="btn btn-primary" data-next disabled>Continuar <span class="arrow">→</span></button>
+                <button type="button" class="btn btn-primary is-inactive" data-next>Continuar <span class="arrow">→</span></button>
               </div>
             </div>
 
