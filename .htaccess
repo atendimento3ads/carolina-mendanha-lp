@@ -8,6 +8,10 @@
   RewriteCond %{HTTPS} off
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # URL amigável /obrigado (página de conversão, sem .html)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^obrigado/?$ obrigado.html [L]
 </IfModule>
 
 # ─── Cabeçalhos de segurança (PageSpeed · Práticas recomendadas) ───

@@ -79,6 +79,232 @@
       }, { passive: true });
       update();
     }
+
+    /* ─── Formulário de qualificação (multi-etapas) ─── */
+    var form = document.getElementById('lead-form');
+    if (form) {
+      var WA_NUMBER = '556292280866';
+      var STEPS = ['nome', 'whatsapp', 'categoria', 'situacao', 'prazo', 'revisao'];
+      var blockedPanel = document.getElementById('f-blocked');
+      var progressFill = document.getElementById('form-progress-fill');
+      var progressText = document.getElementById('form-progress-text');
+      var reviewList = document.getElementById('f-review-list');
+
+      var state = { nome: '', whatsapp: '', categoria: '', situacao: '', situacaoLabel: '', prazo: '', prazoLabel: '' };
+      var current = 'nome';
+      var presetSituacao = null;
+      var presetApplied = false;
+
+      function labelText(input) {
+        var label = input.closest('label');
+        var span = label ? label.querySelector('span') : null;
+        return span ? span.textContent.trim() : '';
+      }
+
+      function applyPresetIfNeeded(id) {
+        if (id !== 'situacao' || !presetSituacao || presetApplied) return;
+        var input = form.querySelector('input[name="situacao"][value="' + presetSituacao + '"]');
+        if (input) {
+          input.checked = true;
+          var opt = input.closest('.f-option');
+          if (opt) opt.classList.add('checked');
+          state.situacao = input.value;
+          state.situacaoLabel = labelText(input);
+        }
+        presetApplied = true;
+      }
+
+      function updateProgress(id) {
+        if (!progressFill) return;
+        var idx = STEPS.indexOf(id === 'bloqueado' ? 'categoria' : id);
+        if (idx < 0) idx = 0;
+        var pct = ((idx + 1) / STEPS.length) * 100;
+        progressFill.style.width = pct + '%';
+        if (progressText) {
+          progressText.textContent = id === 'bloqueado' ? 'Verificando elegibilidade' : 'Etapa ' + (idx + 1) + ' de ' + STEPS.length;
+        }
+      }
+
+      function showStep(id, focusIt) {
+        current = id;
+        var allPanels = form.querySelectorAll('.f-step');
+        for (var i = 0; i < allPanels.length; i++) allPanels[i].classList.remove('active');
+        if (blockedPanel) blockedPanel.classList.remove('active');
+
+        if (id === 'bloqueado') {
+          if (blockedPanel) blockedPanel.classList.add('active');
+          form.style.display = 'none';
+        } else {
+          form.style.display = '';
+          var panel = form.querySelector('.f-step[data-step="' + id + '"]');
+          if (panel) panel.classList.add('active');
+        }
+        applyPresetIfNeeded(id);
+        updateProgress(id);
+
+        if (focusIt !== false) {
+          window.requestAnimationFrame(function () {
+            var target = id === 'bloqueado' ? blockedPanel : form.querySelector('.f-step[data-step="' + id + '"]');
+            if (!target) return;
+            var focusable = target.querySelector('input, button');
+            if (focusable) focusable.focus({ preventScroll: true });
+          });
+        }
+      }
+
+      function next() {
+        var idx = STEPS.indexOf(current);
+        if (idx < 0 || idx >= STEPS.length - 1) return;
+        showStep(STEPS[idx + 1]);
+      }
+      function back() {
+        var idx = STEPS.indexOf(current);
+        if (idx <= 0) return;
+        showStep(STEPS[idx - 1]);
+      }
+
+      /* Nome */
+      var nomeInput = document.getElementById('f-nome');
+      var nomeNext = form.querySelector('.f-step[data-step="nome"] [data-next]');
+      function checkNome() {
+        var valid = nomeInput.value.trim().length >= 2;
+        nomeNext.disabled = !valid;
+        return valid;
+      }
+      nomeInput.addEventListener('input', checkNome);
+      nomeInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' && checkNome()) { e.preventDefault(); state.nome = nomeInput.value.trim(); next(); }
+      });
+      nomeNext.addEventListener('click', function () { if (checkNome()) { state.nome = nomeInput.value.trim(); next(); } });
+
+      /* WhatsApp */
+      var waInput = document.getElementById('f-whatsapp');
+      var waNext = form.querySelector('.f-step[data-step="whatsapp"] [data-next]');
+      function maskPhone(v) {
+        var d = v.replace(/\D/g, '').slice(0, 11);
+        if (d.length > 10) return d.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3').replace(/-$/, '');
+        if (d.length > 6) return d.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3').replace(/-$/, '');
+        if (d.length > 2) return d.replace(/(\d{2})(\d{0,5})/, '($1) $2').replace(/\s$/, '');
+        if (d.length > 0) return '(' + d;
+        return '';
+      }
+      function checkWhatsapp() {
+        var digits = waInput.value.replace(/\D/g, '');
+        var valid = digits.length >= 10;
+        waNext.disabled = !valid;
+        return valid;
+      }
+      waInput.addEventListener('input', function () { waInput.value = maskPhone(waInput.value); checkWhatsapp(); });
+      waInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' && checkWhatsapp()) { e.preventDefault(); state.whatsapp = waInput.value.trim(); next(); }
+      });
+      waNext.addEventListener('click', function () { if (checkWhatsapp()) { state.whatsapp = waInput.value.trim(); next(); } });
+
+      /* Radios com auto-avanço */
+      function wireRadioGroup(name, onPick) {
+        var inputs = form.querySelectorAll('input[name="' + name + '"]');
+        for (var i = 0; i < inputs.length; i++) {
+          inputs[i].addEventListener('change', function () {
+            var group = form.querySelectorAll('input[name="' + name + '"]');
+            for (var j = 0; j < group.length; j++) {
+              var opt = group[j].closest('.f-option');
+              if (opt) opt.classList.toggle('checked', group[j].checked);
+            }
+            onPick(this);
+          });
+        }
+      }
+
+      wireRadioGroup('categoria', function (input) {
+        state.categoria = input.value;
+        if (window.dataLayer) {
+          window.dataLayer.push({
+            event: input.value === 'pessoa_fisica' ? 'form_desqualificado' : 'form_categoria_empresa',
+            categoria: input.value
+          });
+        }
+        setTimeout(function () {
+          if (input.value === 'pessoa_fisica') showStep('bloqueado');
+          else next();
+        }, 320);
+      });
+
+      wireRadioGroup('situacao', function (input) {
+        state.situacao = input.value;
+        state.situacaoLabel = labelText(input);
+        setTimeout(next, 320);
+      });
+
+      wireRadioGroup('prazo', function (input) {
+        state.prazo = input.value;
+        state.prazoLabel = labelText(input);
+        setTimeout(function () { renderReview(); next(); }, 320);
+      });
+
+      /* Voltar */
+      var backButtons = form.querySelectorAll('[data-back]');
+      for (var b = 0; b < backButtons.length; b++) backButtons[b].addEventListener('click', back);
+      var backFromBlocked = blockedPanel ? blockedPanel.querySelector('[data-back-blocked]') : null;
+      if (backFromBlocked) backFromBlocked.addEventListener('click', function () { showStep('categoria'); });
+
+      /* Revisão */
+      function renderReview() {
+        if (!reviewList) return;
+        reviewList.innerHTML = '';
+        var rows = [
+          ['Nome', state.nome],
+          ['WhatsApp', state.whatsapp],
+          ['Situação', state.situacaoLabel],
+          ['Prazo/audiência', state.prazoLabel]
+        ];
+        rows.forEach(function (r) {
+          var div = document.createElement('div');
+          div.className = 'f-review-item';
+          var k = document.createElement('span'); k.className = 'k'; k.textContent = r[0];
+          var v = document.createElement('span'); v.className = 'v'; v.textContent = r[1];
+          div.appendChild(k); div.appendChild(v);
+          reviewList.appendChild(div);
+        });
+      }
+
+      /* Preset a partir dos CTAs da página (pré-seleciona a situação) */
+      var presetLinks = document.querySelectorAll('[data-preset-situacao]');
+      for (var p = 0; p < presetLinks.length; p++) {
+        presetLinks[p].addEventListener('click', function () {
+          presetSituacao = this.getAttribute('data-preset-situacao');
+        });
+      }
+
+      /* Envio final: abre o WhatsApp com a mensagem pronta e segue para /obrigado (rastreio) */
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var submitBtn = document.getElementById('f-submit');
+        if (submitBtn.disabled) return;
+        submitBtn.disabled = true;
+
+        var msg = [
+          'Olá, Dra. Carolina! Me chamo ' + state.nome + '.',
+          '',
+          'Resumo do meu atendimento:',
+          '• Situação: ' + state.situacaoLabel,
+          '• Prazo/audiência: ' + state.prazoLabel,
+          '• WhatsApp para contato: ' + state.whatsapp,
+          '',
+          'Aguardo retorno, obrigado(a)!'
+        ].join('\n');
+
+        var url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+
+        if (window.dataLayer) {
+          window.dataLayer.push({ event: 'lead_qualificado', situacao: state.situacao, prazo: state.prazo });
+        }
+
+        window.open(url, '_blank', 'noopener');
+        window.location.href = '/obrigado';
+      });
+
+      showStep('nome', false);
+    }
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
