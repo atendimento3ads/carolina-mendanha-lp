@@ -102,6 +102,7 @@ window.gtag_report_conversion = function (url) {
     var form = document.getElementById('lead-form');
     if (form) {
       var WA_NUMBER = '556292280866';
+      var SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbw0G7lYYAi5_9KJnxtK_hCsIpqjSt_BYurQ9V8TOX8uIGERPaBCrGbMchdrWBaN9DaSaA/exec';
       var STEPS = ['nome', 'whatsapp', 'categoria', 'situacao', 'prazo', 'revisao'];
       var blockedPanel = document.getElementById('f-blocked');
       var progressFill = document.getElementById('form-progress-fill');
@@ -313,7 +314,36 @@ window.gtag_report_conversion = function (url) {
         });
       }
 
-      /* Envio final: abre o WhatsApp com a mensagem pronta e segue para /obrigado (rastreio) */
+      function enviarLeadParaPlanilha() {
+        var params = new URLSearchParams(window.location.search);
+        var payload = {
+          nome: state.nome,
+          whatsapp: state.whatsapp,
+          categoria: state.categoria === 'empresa' ? 'Empresa' : state.categoria,
+          situacao: state.situacaoLabel,
+          prazo: state.prazoLabel,
+          pagina: window.location.href,
+          utm_source: params.get('utm_source') || '',
+          utm_medium: params.get('utm_medium') || '',
+          utm_campaign: params.get('utm_campaign') || '',
+          gclid: params.get('gclid') || ''
+        };
+
+        /* no-cors evita preflight no Apps Script; keepalive permite que o POST
+           termine mesmo após o redirecionamento para a página de obrigado. */
+        fetch(SHEETS_WEB_APP_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          cache: 'no-store',
+          keepalive: true,
+          headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+          body: JSON.stringify(payload)
+        }).catch(function () {
+          if (window.dataLayer) window.dataLayer.push({ event: 'lead_planilha_erro' });
+        });
+      }
+
+      /* Envio final: registra na planilha, abre o WhatsApp e segue para /obrigado (rastreio) */
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         var submitBtn = document.getElementById('f-submit');
@@ -337,6 +367,7 @@ window.gtag_report_conversion = function (url) {
           window.dataLayer.push({ event: 'lead_qualificado', situacao: state.situacao, prazo: state.prazo });
         }
 
+        enviarLeadParaPlanilha();
         window.open(url, '_blank', 'noopener');
         window.gtag_report_conversion('/obrigado');
       });
