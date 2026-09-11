@@ -245,24 +245,16 @@ section { padding:112px 0; position:relative; }
 }
 .hero-proof .hp-ico svg { width:15px; height:15px; }
 
-/* Vídeo da Dra. Carolina (placeholder até o arquivo final chegar) */
-.hero-video {
+/* Foto da Dra. Carolina (no lugar do vídeo, enquanto ele não existe) */
+.hero-photo {
   position:relative; border-radius:22px; overflow:hidden; aspect-ratio:438/620; max-width:420px; margin-left:auto; width:100%;
   box-shadow:0 30px 80px rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.1); background:var(--navy-deep);
 }
-.hero-video img, .hero-video video { width:100%; height:100%; object-fit:cover; object-position:center top; }
-.hero-video::after {
+.hero-photo img { width:100%; height:100%; object-fit:cover; object-position:center top; }
+.hero-photo::after {
   content:''; position:absolute; inset:0; pointer-events:none;
-  background:linear-gradient(180deg, transparent 45%, rgba(32,34,58,.72));
+  background:linear-gradient(160deg, transparent 55%, rgba(43,46,69,.55));
 }
-.video-play {
-  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:2;
-  width:84px; height:84px; border-radius:50%; border:none; cursor:pointer;
-  background:var(--gold-grad); color:var(--navy-deep); display:flex; align-items:center; justify-content:center;
-  box-shadow:0 0 0 10px rgba(217,167,72,.18), 0 18px 40px rgba(0,0,0,.35); transition:transform var(--transition), box-shadow var(--transition);
-}
-.video-play:hover { transform:translate(-50%,-50%) scale(1.06); box-shadow:0 0 0 14px rgba(217,167,72,.22), 0 18px 40px rgba(0,0,0,.35); }
-.video-play svg { width:30px; height:30px; margin-left:4px; }
 
 /* ─── Formulário da primeira dobra ─── */
 .lead-top { background:var(--paper); padding:0 0 104px; }
@@ -497,7 +489,7 @@ footer { background:var(--navy-deep); color:rgba(255,255,255,.6); padding:64px 0
   .hero { padding:88px 0 172px; }
   .hero-grid { grid-template-columns:1fr; gap:48px; }
   .hero-inner { max-width:none; }
-  .hero-video { max-width:400px; margin-inline:auto; }
+  .hero-photo { max-width:400px; margin-inline:auto; }
   .lead-top { padding-bottom:84px; }
   .urgency { padding-top:16px; }
   .urgency-box { grid-template-columns:1fr; gap:10px; padding:52px 44px; }
@@ -603,15 +595,9 @@ footer { background:var(--navy-deep); color:rgba(255,255,255,.6); padding:64px 0
         </ul>
       </div>
 
-      <!-- [VÍDEO DA DRA. CAROLINA]
-           Placeholder: foto + botão de play. Quando o vídeo chegar, trocar o <img> por
-           <video src="../assets/video-carolina.mp4" poster="../assets/hero-carolina.webp" controls playsinline preload="none"></video>
-           e remover o botão .video-play. -->
-      <div class="hero-video reveal" data-d="2">
+      <!-- Foto no lugar do [VÍDEO DA DRA. CAROLINA] previsto na copy, até o vídeo ser gravado -->
+      <div class="hero-photo reveal" data-d="2">
         <img src="../assets/hero-carolina.webp" alt="Ana Carolina Mendanha, advogada trabalhista empresarial" width="439" height="659" fetchpriority="high" decoding="async">
-        <button type="button" class="video-play" aria-label="Assistir ao vídeo da Dra. Carolina">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11-6.86a1 1 0 0 0 0-1.72l-11-6.86A1 1 0 0 0 8 5.14z"/></svg>
-        </button>
       </div>
     </div>
   </div>
