@@ -11,3 +11,5 @@ deployment:
     - /bin/cp sitemap.xml "$DEPLOYPATH"
     - /bin/cp site.webmanifest "$DEPLOYPATH"
     - /bin/cp -R assets "$DEPLOYPATH"
+    # v2 em aprovação (carolinamendanha.com.br/v2/, noindex)
+    - /bin/cp -R v2 "$DEPLOYPATH"

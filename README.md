@@ -13,6 +13,9 @@ Site estático — HTML + CSS (sem build, sem dependências).
 ├── assets/
 │   ├── hero-carolina.png    # Foto da hero
 │   └── sobre-carolina.png   # Foto da seção "Autoridade"
+├── v2/               # Nova versão em aprovação → /v2/ (noindex)
+│   ├── index.html
+│   └── assets/app.js # JS da v2 (mesmo bootstrap inline da principal, por causa da CSP)
 ├── .cpanel.yml       # Deploy automático no cPanel (Git Version Control)
 ├── .gitignore
 └── _dev/             # Materiais de desenvolvimento (NÃO publicados)
