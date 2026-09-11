@@ -233,8 +233,8 @@ section { padding:104px 0; position:relative; }
 /* ─── HERO (imagem preenchendo a seção) ─── */
 .hero {
   position:relative; overflow:hidden; color:var(--white); background:var(--navy-900);
-  min-height:min(calc(100svh - 76px), 860px); display:flex; align-items:center;
-  padding:88px 0 56px;
+  min-height:min(calc(100svh - 76px), 860px); display:flex; align-items:stretch;
+  padding:72px 0 36px;
 }
 /* Imagem da hero preenchendo a seção: horizontal no desktop, vertical no mobile.
    As duas já trazem o azul (#0B1431) no lado do texto, casando com --navy-900. */
@@ -246,7 +246,9 @@ section { padding:104px 0; position:relative; }
     linear-gradient(90deg, rgba(10,21,48,.55) 0%, rgba(10,21,48,.15) 45%, rgba(10,21,48,0) 60%),
     linear-gradient(0deg, rgba(10,21,48,.7) 0%, rgba(10,21,48,0) 22%);
 }
-.hero .container { position:relative; z-index:2; width:100%; }
+/* texto centralizado na altura; painel de destaques encostado no rodapé da seção */
+.hero .container { position:relative; z-index:2; width:100%; display:flex; flex-direction:column; }
+.hero-inner { margin:auto 0; }
 .hero-inner { max-width:680px; }
 .hero .eyebrow { background:transparent; }
 .hero h1.title { font-size:clamp(30px,3.3vw,46px); line-height:1.12; margin-bottom:20px; letter-spacing:-.03em; }
@@ -258,7 +260,7 @@ section { padding:104px 0; position:relative; }
 /* Destaques: painel de vidro centralizado */
 .hero-proof {
   display:grid; grid-template-columns:repeat(4, 1fr);
-  max-width:1060px; margin:56px auto 0; padding:20px 8px; position:relative;
+  max-width:1060px; margin:48px auto 0; padding:20px 8px; position:relative;
   border-radius:22px; border:1px solid rgba(255,255,255,.14);
   background:linear-gradient(135deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,.04) 55%, rgba(255,255,255,.06) 100%);
   backdrop-filter:blur(18px) saturate(150%); -webkit-backdrop-filter:blur(18px) saturate(150%);
@@ -559,6 +561,7 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:60px 0 
   .header-cta { gap:12px; }
   .btn-header { font-size:13px; padding:10px 16px; white-space:nowrap; }
   .btn-header .arrow { display:none; }
+  .btn-header .cta-xl { display:none; } /* no celular: "Analisar caso" */
   .faq-btn { font-size:18px; padding:20px 20px; }
   .faq-body-inner { padding:0 20px 22px; }
   .btn { width:100%; }
@@ -598,7 +601,7 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:60px 0 
     </a>
     <div class="header-cta">
       <span class="header-note">Atendimento online<br>em todo o Brasil</span>
-      <a href="#formulario" class="btn-header" data-to-form>Relatar minha situação <span class="arrow">→</span></a>
+      <a href="#formulario" class="btn-header" data-to-form>Analisar <span class="cta-xl">o </span>caso<span class="cta-xl"> da empresa</span> <span class="arrow">→</span></a>
     </div>
   </div>
 </header>
@@ -626,7 +629,7 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:60px 0 
         Entenda o prazo, os documentos e os riscos do caso direto com a advogada responsável.
       </p>
       <div class="btn-row reveal" data-d="3">
-        <a href="#formulario" class="btn btn-primary" data-to-form>Relatar minha situação <span class="arrow">→</span></a>
+        <a href="#formulario" class="btn btn-primary" data-to-form>Analisar o caso da empresa <span class="arrow">→</span></a>
         <a href="https://wa.me/556292280866?text=Ol%C3%A1%2C%20Dra.%20Carolina%21%20Minha%20empresa%20recebeu%20uma%20a%C3%A7%C3%A3o%2C%20notifica%C3%A7%C3%A3o%20ou%20intima%C3%A7%C3%A3o%20trabalhista%20e%20gostaria%20de%20orienta%C3%A7%C3%A3o%20sobre%20como%20responder.%20Pode%20me%20ajudar%3F" target="_blank" rel="noopener" class="btn btn-ghost light" data-wa="hero"><svg class="wa-ico" aria-hidden="true"><use href="#ico-wa"/></svg>Falar com a advogada</a>
       </div>
     </div>
@@ -983,7 +986,7 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:60px 0 
       </div>
     </div>
     <div class="section-cta center reveal">
-      <a href="#contato" class="btn btn-primary" data-to-form>Relatar minha situação <span class="arrow">→</span></a>
+      <a href="#contato" class="btn btn-primary" data-to-form>Analisar o caso da empresa <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
@@ -999,7 +1002,7 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:60px 0 
         <h2 class="title light">Envie o que sua empresa recebeu antes de preparar a resposta</h2>
         <p>Organize prazo, documentos e riscos do caso em uma primeira análise direto com a advogada responsável.</p>
         <div class="btn-row">
-          <a href="#contato" class="btn btn-primary" data-to-form>Relatar minha situação <span class="arrow">→</span></a>
+          <a href="#contato" class="btn btn-primary" data-to-form>Analisar o caso da empresa <span class="arrow">→</span></a>
           <a href="https://wa.me/556292280866?text=Ol%C3%A1%2C%20Dra.%20Carolina%21%20Minha%20empresa%20recebeu%20uma%20a%C3%A7%C3%A3o%2C%20notifica%C3%A7%C3%A3o%20ou%20intima%C3%A7%C3%A3o%20trabalhista%20e%20gostaria%20de%20orienta%C3%A7%C3%A3o%20sobre%20como%20responder.%20Pode%20me%20ajudar%3F" target="_blank" rel="noopener" class="btn btn-ghost light" data-wa="final"><svg class="wa-ico" aria-hidden="true"><use href="#ico-wa"/></svg>Falar com advogada</a>
         </div>
       </div>
