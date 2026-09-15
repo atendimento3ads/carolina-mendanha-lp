@@ -47,7 +47,36 @@ window.gtag_report_conversion = function (url) {
     return '';
   }
 
+  /* CNPJ numérico ou alfanumérico (novo formato da Receita, a partir de jul/2026):
+     12 posições [0-9A-Z] + 2 dígitos verificadores; cada caractere vale (código ASCII - 48). */
+  function cnpjClean(v) { return v.toUpperCase().replace(/[^0-9A-Z]/g, '').slice(0, 14); }
+  function maskCnpj(v) {
+    var c = cnpjClean(v), out = '';
+    for (var i = 0; i < c.length; i++) {
+      if (i === 2 || i === 5) out += '.';
+      if (i === 8) out += '/';
+      if (i === 12) out += '-';
+      out += c[i];
+    }
+    return out;
+  }
+  function cnpjValid(v) {
+    var c = cnpjClean(v);
+    if (!/^[0-9A-Z]{12}\d{2}$/.test(c) || /^(\d)\1{13}$/.test(c)) return false;
+    function dv(len) {
+      var sum = 0, weight = 2;
+      for (var i = len - 1; i >= 0; i--) {
+        sum += (c.charCodeAt(i) - 48) * weight;
+        weight = weight === 9 ? 2 : weight + 1;
+      }
+      var r = sum % 11;
+      return r < 2 ? 0 : 11 - r;
+    }
+    return dv(12) === +c[12] && dv(13) === +c[13];
+  }
+
   function inputValid(input) {
+    if (input.getAttribute('data-validate') === 'cnpj') return cnpjValid(input.value);
     if (input.type === 'tel') return input.value.replace(/\D/g, '').length >= 10;
     return input.value.trim().length >= 2;
   }
@@ -122,6 +151,12 @@ window.gtag_report_conversion = function (url) {
       }
 
       inputs.forEach(function (input, k) {
+        if (input.getAttribute('data-validate') === 'cnpj') {
+          input.addEventListener('input', function () { input.value = maskCnpj(input.value); refresh(); });
+          input.addEventListener('paste', function () {
+            window.requestAnimationFrame(function () { input.value = maskCnpj(input.value); refresh(); });
+          });
+        }
         if (input.type === 'tel') {
           input.addEventListener('input', function () { input.value = maskPhone(input.value); refresh(); });
           input.addEventListener('paste', function () {
@@ -162,6 +197,7 @@ window.gtag_report_conversion = function (url) {
       var payload = {
         nome: state.nome,
         empresa: state.empresa,
+        cnpj: state.cnpj,
         whatsapp: state.whatsapp,
         cidade: state.cidade,
         categoria: 'Empresa',
@@ -206,6 +242,7 @@ window.gtag_report_conversion = function (url) {
         'Resumo:',
         '• Nome: ' + state.nome,
         '• Empresa: ' + state.empresa,
+        '• CNPJ: ' + state.cnpj,
         '• Cidade/UF: ' + state.cidade,
         '• Situação: ' + state.situacaoLabel,
         '• Prazo ou audiência marcada: ' + state.prazoLabel,
@@ -291,6 +328,30 @@ window.gtag_report_conversion = function (url) {
         if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
       }, { passive: true });
       update();
+    }
+
+    /* ─── Vídeo: embed do YouTube carregado só no clique (capa leve até lá) ─── */
+    var videoCards = document.querySelectorAll('.video-card');
+    for (var v = 0; v < videoCards.length; v++) {
+      (function (card) {
+        var play = card.querySelector('.video-play');
+        if (!play) return;
+        play.addEventListener('click', function () {
+          var id = (card.getAttribute('data-youtube-id') || '').trim();
+          if (!id) {
+            var soon = card.querySelector('.video-soon');
+            if (soon) soon.hidden = false;
+            return;
+          }
+          var iframe = document.createElement('iframe');
+          iframe.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+          iframe.title = 'Vídeo da Dra. Ana Carolina Mendanha';
+          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+          iframe.allowFullscreen = true;
+          card.appendChild(iframe);
+          play.remove();
+        });
+      })(videoCards[v]);
     }
 
     /* ─── Formulários ─── */

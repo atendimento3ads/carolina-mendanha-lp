@@ -54,13 +54,12 @@ gtag('config', 'G-3HD3M0DN7T');
 <link rel="manifest" href="../site.webmanifest">
 
 <!-- ─── Performance: preload LCP image + fontes não-bloqueantes ─── -->
-<link rel="preload" as="image" href="../assets/hero-bg-desktop.webp" type="image/webp" media="(min-width: 921px)" fetchpriority="high">
-<link rel="preload" as="image" href="../assets/hero-bg-mobile.webp" type="image/webp" media="(max-width: 920px)" fetchpriority="high">
+<link rel="preload" as="image" href="../assets/hero-bg-desktop.webp" type="image/webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" data-fontswap>
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" media="print" data-fontswap>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap"></noscript>
 
 <!-- ─── Dados estruturados (Schema.org) ─── -->
 <script type="application/ld+json">
@@ -102,15 +101,14 @@ gtag('config', 'G-3HD3M0DN7T');
 :root {
   --gold:        #D9A748;
   --gold-2:      #E9BE66;
-  --gold-dark:   #B98A2E;
+  --gold-dark:   #A97B22;
   --gold-soft:   rgba(217,167,72,.12);
   --gold-line:   rgba(217,167,72,.32);
   --gold-grad:   linear-gradient(135deg,#F0C874 0%,#D9A748 55%,#C29232 100%);
-  --navy-950:    #050B1A;   /* rodapé */
-  --navy-900:    #0A1530;   /* seções escuras */
-  --navy-800:    #0F1D40;   /* títulos em fundo claro */
+  --navy-950:    #050B1A;
+  --navy-900:    #0A1530;
+  --navy-800:    #0F1D40;
   --navy-700:    #16295A;
-  --blue-glow:   #1F4494;   /* brilho azul das seções escuras */
   --ink:         #0E1630;
   --gray:        #5B6275;
   --gray-2:      #8D93A5;
@@ -120,12 +118,13 @@ gtag('config', 'G-3HD3M0DN7T');
   --white:       #FFFFFF;
   --serif:       'Times New Roman', Times, Georgia, serif;
   --sans:        'Inter', system-ui, -apple-system, sans-serif;
+  --display:     'Manrope', 'Inter', system-ui, -apple-system, sans-serif;
   --r-md:        20px;
-  --r-lg:        28px;
+  --r-lg:        26px;
   --r-pill:      100px;
   --shadow-sm:   0 6px 24px rgba(10,21,48,.06);
   --shadow-md:   0 18px 50px rgba(10,21,48,.10);
-  --shadow-lg:   0 30px 80px rgba(10,21,48,.18);
+  --shadow-lg:   0 30px 80px rgba(10,21,48,.22);
   --transition:  .28s cubic-bezier(.2,.7,.3,1);
 }
 
@@ -134,47 +133,45 @@ gtag('config', 'G-3HD3M0DN7T');
 html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
 body {
   font-family:var(--sans); color:var(--ink); background:var(--white);
-  line-height:1.7; -webkit-font-smoothing:antialiased; font-size:16px;
-  overflow-x:hidden;
+  line-height:1.7; -webkit-font-smoothing:antialiased; font-size:16px; overflow-x:hidden;
 }
 a { text-decoration:none; color:inherit; }
 img { max-width:100%; display:block; }
-ul { list-style:none; }
+ul, ol { list-style:none; }
 fieldset { border:0; min-width:0; }
 :focus-visible { outline:2px solid var(--gold); outline-offset:3px; border-radius:4px; }
 
 /* ─── Utility ─── */
 .container { max-width:1240px; margin:0 auto; padding:0 28px; }
 
+/* Rótulo de seção: fio dourado + caixa alta (a pílula fica só no hero) */
 .eyebrow {
-  display:inline-flex; align-items:center; gap:8px;
-  font-family:var(--sans); font-size:11.5px; font-weight:600;
-  letter-spacing:.14em; text-transform:uppercase; color:var(--gold-dark);
-  background:var(--gold-soft); border:1px solid var(--gold-line);
-  padding:7px 15px; border-radius:var(--r-pill); margin-bottom:20px;
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--sans); font-size:11.5px; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:14px;
 }
-.eyebrow::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--gold); flex-shrink:0; }
-.eyebrow.light { color:var(--gold-2); background:rgba(217,167,72,.08); border-color:rgba(217,167,72,.45); }
+.eyebrow::before { content:''; width:26px; height:2px; border-radius:2px; background:var(--gold-grad); flex-shrink:0; }
+.eyebrow.light { color:var(--gold-2); }
+.eyebrow--pill { padding:7px 15px; border:1px solid rgba(217,167,72,.45); border-radius:var(--r-pill); background:rgba(217,167,72,.08); margin-bottom:22px; }
+.eyebrow--pill::before { width:6px; height:6px; border-radius:50%; }
 
+/* Títulos: sans robusta + destaque em serif itálico dourado */
 .title {
-  font-family:var(--serif); font-weight:400; color:var(--navy-800);
-  line-height:1.14; letter-spacing:-.035em;
+  font-family:var(--display); font-weight:700; color:var(--navy-800);
+  line-height:1.2; letter-spacing:-.025em;
 }
+.title em { font-family:var(--serif); font-style:italic; font-weight:400; color:var(--gold-dark); letter-spacing:-.01em; font-size:1.08em; }
 .title.light { color:var(--white); }
-h2.title { font-size:clamp(26px,2.9vw,40px); }
+.title.light em { color:var(--gold-2); }
+h2.title { font-size:clamp(24px,2.5vw,35px); }
 
-.body-text { font-size:16.5px; color:var(--gray); line-height:1.8; }
-.body-text + .body-text { margin-top:16px; }
-.body-text strong { color:var(--ink); font-weight:600; }
-
-.divider-gold { width:56px; height:3px; background:var(--gold-grad); border-radius:var(--r-pill); margin:24px 0; }
-.center .divider-gold { margin-left:auto; margin-right:auto; }
+.body-text { font-size:16px; color:var(--gray); line-height:1.8; }
 
 /* ─── Buttons ─── */
 .btn {
   display:inline-flex; align-items:center; justify-content:center; gap:10px;
   font-family:var(--sans); font-size:15px; font-weight:600; letter-spacing:.01em;
-  padding:15px 30px; border-radius:var(--r-pill); transition:all var(--transition);
+  padding:15px 28px; border-radius:var(--r-pill); transition:all var(--transition);
   cursor:pointer; border:1.5px solid transparent; line-height:1.3; text-align:center;
 }
 .btn-primary { background:var(--gold-grad); color:var(--navy-900); box-shadow:0 10px 30px rgba(217,167,72,.35); }
@@ -182,25 +179,22 @@ h2.title { font-size:clamp(26px,2.9vw,40px); }
 .btn-primary:disabled { opacity:.42; cursor:not-allowed; box-shadow:none; transform:none !important; }
 .btn-primary.is-inactive { opacity:.55; box-shadow:none; }
 .btn-primary.is-inactive:hover { transform:none; box-shadow:none; }
-.btn-ghost { background:transparent; color:var(--navy-800); border-color:rgba(15,29,64,.22); }
-.btn-ghost:hover { background:var(--navy-800); color:var(--white); border-color:var(--navy-800); transform:translateY(-3px); }
+.btn-navy { background:var(--navy-900); color:var(--white); box-shadow:0 10px 26px rgba(10,21,48,.25); }
+.btn-navy:hover { background:var(--navy-700); transform:translateY(-3px); }
 .btn-ghost.light { color:var(--white); border-color:rgba(255,255,255,.32); background:rgba(255,255,255,.03); }
 .btn-ghost.light:hover { background:var(--white); color:var(--navy-900); border-color:var(--white); }
 .btn .arrow { transition:transform var(--transition); }
 .btn:hover .arrow { transform:translateX(4px); }
 .btn .wa-ico { width:18px; height:18px; flex-shrink:0; }
 .btn-row { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
-.btn-row.center { justify-content:center; }
-.section-cta { margin-top:52px; }
-.section-cta.center { text-align:center; }
 
-/* ─── Header (escuro, sobre o hero) ─── */
+/* ─── Header ─── */
 .site-header {
-  position:sticky; top:0; z-index:100; background:rgba(10,21,48,.82);
+  position:sticky; top:0; z-index:100; background:rgba(10,21,48,.84);
   backdrop-filter:saturate(160%) blur(16px); -webkit-backdrop-filter:saturate(160%) blur(16px);
   border-bottom:1px solid rgba(255,255,255,.07); transition:box-shadow var(--transition), background var(--transition);
 }
-.site-header.scrolled { box-shadow:0 10px 30px rgba(5,11,26,.35); background:rgba(10,21,48,.94); }
+.site-header.scrolled { box-shadow:0 10px 30px rgba(5,11,26,.35); background:rgba(10,21,48,.95); }
 .site-header .container { height:76px; display:flex; align-items:center; justify-content:space-between; }
 .brand { display:flex; align-items:center; gap:13px; }
 .brand-text { display:flex; flex-direction:column; line-height:1.1; }
@@ -217,11 +211,9 @@ h2.title { font-size:clamp(26px,2.9vw,40px); }
 .btn-header:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(217,167,72,.45); }
 
 /* ─── Section base ─── */
-section { padding:104px 0; position:relative; }
-.section-head { max-width:760px; margin-bottom:56px; }
+section { padding:96px 0; position:relative; }
+.section-head { max-width:760px; margin-bottom:52px; }
 .section-head.center { margin-left:auto; margin-right:auto; text-align:center; }
-
-/* Fundo escuro padrão (azul profundo com brilhos) */
 .dark {
   background:
     radial-gradient(ellipse 60% 55% at 85% 0%, rgba(31,68,148,.55), transparent 70%),
@@ -230,97 +222,97 @@ section { padding:104px 0; position:relative; }
   color:var(--white); overflow:hidden;
 }
 
-/* ─── HERO (imagem preenchendo a seção) ─── */
-.hero {
-  position:relative; overflow:hidden; color:var(--white); background:var(--navy-900);
-  min-height:min(calc(100svh - 76px), 860px); display:flex; align-items:stretch;
-  padding:72px 0 36px;
-}
-/* Imagem da hero preenchendo a seção: horizontal no desktop, vertical no mobile.
-   As duas já trazem o azul (#0B1431) no lado do texto, casando com --navy-900. */
+/* ─── HERO: texto + formulário à esquerda | vídeo + benefícios à direita ─── */
+.hero { position:relative; overflow:hidden; background:var(--navy-900); color:var(--white); padding:60px 0 76px; }
 .hero-bg { position:absolute; inset:0; z-index:0; }
-.hero-bg img { width:100%; height:100%; object-fit:cover; object-position:72% 30%; }
+.hero-bg img { width:100%; height:100%; object-fit:cover; object-position:75% 30%; filter:blur(16px) brightness(.55) saturate(1.1); transform:scale(1.1); }
 .hero-bg::after {
   content:''; position:absolute; inset:0;
   background:
-    linear-gradient(90deg, rgba(10,21,48,.55) 0%, rgba(10,21,48,.15) 45%, rgba(10,21,48,0) 60%),
-    linear-gradient(0deg, rgba(10,21,48,.7) 0%, rgba(10,21,48,0) 22%);
+    linear-gradient(90deg, var(--navy-900) 0%, rgba(10,21,48,.93) 42%, rgba(10,21,48,.6) 100%),
+    radial-gradient(ellipse 45% 55% at 76% 42%, rgba(217,167,72,.14), transparent 70%);
 }
-/* texto centralizado na altura; painel de destaques encostado no rodapé da seção */
-.hero .container { position:relative; z-index:2; width:100%; display:flex; flex-direction:column; }
-.hero-inner { margin:auto 0; }
-.hero-inner { max-width:680px; }
-.hero .eyebrow { background:transparent; }
-.hero h1.title { font-size:clamp(30px,3.3vw,46px); line-height:1.12; margin-bottom:20px; letter-spacing:-.03em; }
-.hero h1 em {
-  display:block; margin-top:6px; font-style:italic;
+.hero-grid { position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+.hero-main { max-width:600px; }
+.hero-title { font-family:var(--display); color:var(--white); }
+.hero-q { display:block; font-weight:800; font-size:clamp(26px,2.6vw,38px); line-height:1.15; letter-spacing:-.03em; }
+.hero-title em {
+  display:block; margin-top:8px; font-family:var(--serif); font-style:italic; font-weight:400;
+  font-size:clamp(26px,2.45vw,35px); line-height:1.15; letter-spacing:-.015em;
   background:var(--gold-grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
 }
-.hero-sub { font-size:17px; color:rgba(255,255,255,.8); line-height:1.7; max-width:480px; margin-bottom:32px; }
-/* Destaques: painel de vidro centralizado */
-.hero-proof {
-  display:grid; grid-template-columns:repeat(4, 1fr);
-  max-width:1060px; margin:48px auto 0; padding:20px 8px; position:relative;
-  border-radius:22px; border:1px solid rgba(255,255,255,.14);
-  background:linear-gradient(135deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,.04) 55%, rgba(255,255,255,.06) 100%);
-  backdrop-filter:blur(18px) saturate(150%); -webkit-backdrop-filter:blur(18px) saturate(150%);
-  box-shadow:0 24px 60px rgba(5,11,26,.45), inset 0 1px 0 rgba(255,255,255,.14);
-}
-/* fio dourado sutil no topo do vidro */
-.hero-proof::before {
-  content:''; position:absolute; top:-1px; left:15%; right:15%; height:1px;
-  background:linear-gradient(90deg, transparent, rgba(233,190,102,.7), transparent);
-}
-.hero-proof li {
-  display:flex; align-items:center; justify-content:center; gap:14px; padding:6px 20px;
-  font-size:14px; color:rgba(255,255,255,.92); font-weight:500; line-height:1.4;
-  border-left:1px solid rgba(255,255,255,.12);
-}
-.hero-proof li:first-child { border-left:0; }
-.hero-proof svg {
-  flex-shrink:0; box-sizing:content-box; width:22px; height:22px; padding:10px; border-radius:50%;
-  color:var(--gold-2); background:rgba(217,167,72,.12); border:1px solid rgba(217,167,72,.35);
-}
-.hero-proof span { max-width:160px; }
+.hero-sub { font-size:16.5px; color:rgba(255,255,255,.78); line-height:1.65; max-width:500px; margin:16px 0 26px; }
 
-/* ─── Formulário (seção própria, logo após o hero) ─── */
-.lead-top { background:var(--paper); padding:96px 0; }
-.lead-grid { display:grid; grid-template-columns:.85fr 1.15fr; gap:72px; align-items:center; }
-.lead-intro .title { font-size:clamp(28px,3vw,42px); margin-bottom:10px; }
-.lead-intro .lead-time {
-  display:inline-flex; align-items:center; gap:8px; font-size:15px; font-weight:600; color:var(--gold-dark);
+.hero-side { display:flex; flex-direction:column; gap:16px; }
+/* Vídeo (embed do YouTube carregado no clique; capa = foto da Dra.) */
+.video-card {
+  position:relative; aspect-ratio:16/9; border-radius:22px; overflow:hidden; background:var(--navy-800);
+  border:1px solid rgba(233,190,102,.3); box-shadow:0 30px 80px rgba(0,0,0,.45);
 }
-.lead-intro .lead-time svg { width:18px; height:18px; }
-.lead-sign { display:flex; align-items:center; gap:14px; margin-top:32px; padding-top:28px; border-top:1px solid var(--line); }
-.lead-sign img { width:56px; height:56px; border-radius:50%; object-fit:cover; object-position:center 12%; border:2px solid var(--gold-line); }
-.lead-sign strong { display:block; font-family:var(--serif); font-weight:400; font-size:19px; color:var(--navy-800); line-height:1.2; }
-.lead-sign span { display:block; line-height:1.5; margin-top:4px; font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold-dark); }
-.lead-anchor { scroll-margin-top:96px; }
+.video-card img { position:absolute; width:180%; height:180%; max-width:none; left:-78%; top:-21%; object-fit:cover; }
+.video-card::after { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg, rgba(10,21,48,0) 50%, rgba(10,21,48,.55)); }
+.video-card iframe { position:absolute; inset:0; width:100%; height:100%; border:0; z-index:3; }
+.video-play {
+  position:absolute; left:50%; top:50%; z-index:2; transform:translate(-50%,-50%);
+  width:76px; height:76px; border-radius:50%; border:none; cursor:pointer;
+  background:var(--gold-grad); color:var(--navy-900); display:flex; align-items:center; justify-content:center;
+  box-shadow:0 16px 40px rgba(0,0,0,.4); transition:transform var(--transition);
+}
+.video-play::before { content:''; position:absolute; inset:-10px; border-radius:50%; border:2px solid rgba(233,190,102,.55); animation:v-pulse 2.2s ease-out infinite; }
+.video-play:hover { transform:translate(-50%,-50%) scale(1.07); }
+.video-play svg { width:28px; height:28px; margin-left:4px; }
+@keyframes v-pulse { 0% { transform:scale(.9); opacity:1; } 100% { transform:scale(1.45); opacity:0; } }
+.video-soon {
+  position:absolute; left:50%; bottom:18px; transform:translateX(-50%); z-index:2;
+  font-size:12.5px; font-weight:600; letter-spacing:.04em; color:var(--white);
+  background:rgba(10,21,48,.85); border:1px solid rgba(255,255,255,.14); padding:6px 14px; border-radius:var(--r-pill);
+}
+/* Benefícios: bloco flutuante só na metade direita, pouco transparente */
+.hero-proof {
+  display:grid; grid-template-columns:1fr 1fr; border-radius:18px; overflow:hidden;
+  background:rgba(8,16,38,.82); border:1px solid rgba(255,255,255,.1);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  box-shadow:0 22px 50px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08);
+  animation:float-y 6s ease-in-out infinite;
+}
+@keyframes float-y { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-6px); } }
+.hero-proof li {
+  display:flex; align-items:center; gap:12px; padding:14px 18px;
+  font-size:13.5px; color:rgba(255,255,255,.9); font-weight:500; line-height:1.35;
+}
+.hero-proof li:nth-child(odd) { border-right:1px solid rgba(255,255,255,.08); }
+.hero-proof li:nth-child(n+3) { border-top:1px solid rgba(255,255,255,.08); }
+.hero-proof svg {
+  flex-shrink:0; box-sizing:content-box; width:18px; height:18px; padding:9px; border-radius:50%;
+  color:var(--gold-2); background:rgba(217,167,72,.12); border:1px solid rgba(217,167,72,.32);
+}
 
 /* ─── Formulário conversacional ─── */
+.lead-anchor { scroll-margin-top:96px; }
 .form-card {
   background:var(--white); color:var(--ink); border-radius:var(--r-lg);
-  padding:38px 40px 40px; box-shadow:var(--shadow-lg); position:relative; overflow:hidden;
-  border:1px solid var(--line);
+  padding:32px 34px 34px; box-shadow:var(--shadow-lg); position:relative; overflow:hidden;
 }
 .form-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:var(--gold-grad); }
-.form-head { display:flex; align-items:center; gap:14px; margin-bottom:24px; }
-.form-avatar { width:50px; height:50px; border-radius:50%; overflow:hidden; flex-shrink:0; border:2px solid var(--gold-line); background:var(--paper-2); }
+.form-card--hero { padding:24px 26px 26px; box-shadow:0 30px 70px rgba(0,0,0,.4); }
+.form-head { display:flex; align-items:center; gap:12px; margin-bottom:18px; }
+.form-avatar { width:44px; height:44px; border-radius:50%; overflow:hidden; flex-shrink:0; border:2px solid var(--gold-line); background:var(--paper-2); }
 .form-avatar img { width:100%; height:100%; object-fit:cover; object-position:center 12%; }
-.form-head h2 { font-family:var(--serif); font-weight:400; font-size:clamp(21px,2vw,25px); color:var(--navy-800); line-height:1.2; letter-spacing:-.02em; }
-.form-head p { font-size:13.5px; color:var(--gray); margin-top:2px; }
-.form-progress { margin-bottom:26px; }
-.form-progress-label { font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--gray-2); margin-bottom:10px; }
-.form-progress-bar { height:5px; border-radius:var(--r-pill); background:var(--paper-2); overflow:hidden; }
-.form-progress-fill { height:100%; width:16.66%; background:var(--gold-grad); border-radius:var(--r-pill); transition:width .4s cubic-bezier(.2,.7,.3,1); }
+.form-head h2 { font-family:var(--display); font-weight:800; font-size:18px; color:var(--navy-800); line-height:1.25; letter-spacing:-.015em; }
+.form-head p { font-size:13px; color:var(--gray); margin-top:1px; }
+.form-progress { margin-bottom:18px; }
+.form-progress-label { font-size:10.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--gray-2); margin-bottom:8px; }
+.form-progress-bar { height:4px; border-radius:var(--r-pill); background:var(--paper-2); overflow:hidden; }
+.form-progress-fill { height:100%; width:14.28%; background:var(--gold-grad); border-radius:var(--r-pill); transition:width .4s cubic-bezier(.2,.7,.3,1); }
 .f-step { display:none; }
 .f-step.active { display:block; animation:fstep-in .38s cubic-bezier(.2,.7,.3,1); }
 @keyframes fstep-in { from { opacity:0; transform:translateX(10px); } to { opacity:1; transform:none; } }
-.f-q { display:block; font-family:var(--serif); font-weight:400; font-size:clamp(19px,1.8vw,22px); color:var(--navy-800); line-height:1.3; margin-bottom:18px; letter-spacing:-.015em; }
-.f-num { display:block; font-family:var(--sans); font-size:11.5px; font-weight:700; letter-spacing:.14em; color:var(--gold-dark); margin-bottom:6px; }
-.f-fields { display:flex; flex-direction:column; gap:12px; }
+.f-q { display:block; font-family:var(--display); font-weight:700; font-size:17px; color:var(--navy-800); line-height:1.35; margin-bottom:14px; letter-spacing:-.01em; }
+.f-num { display:inline-block; font-family:var(--sans); font-size:11px; font-weight:700; letter-spacing:.12em; color:var(--gold-dark); margin-right:8px; }
+.f-hint { font-size:13px; color:var(--gray); margin:-8px 0 12px; line-height:1.5; }
+.f-fields { display:flex; flex-direction:column; gap:10px; }
 .f-input {
-  width:100%; padding:14px 18px; border-radius:14px; border:1.5px solid var(--line);
+  width:100%; padding:13px 16px; border-radius:12px; border:1.5px solid var(--line);
   font-family:var(--sans); font-size:16px; color:var(--ink); background:var(--paper);
   transition:border-color var(--transition), background var(--transition);
 }
@@ -334,153 +326,153 @@ section { padding:104px 0; position:relative; }
 @keyframes f-autofill-off { from {} to {} }
 .f-input:-webkit-autofill { animation-name:f-autofill-on; animation-duration:.001s; }
 .f-input:not(:-webkit-autofill) { animation-name:f-autofill-off; animation-duration:.001s; }
-.f-options { display:flex; flex-direction:column; gap:10px; }
+.f-options { display:grid; grid-template-columns:repeat(auto-fit, minmax(165px, 1fr)); gap:8px; }
 .f-option {
-  position:relative; display:block; border:1.5px solid var(--line); border-radius:14px;
-  padding:14px 52px 14px 18px; cursor:pointer; background:var(--paper);
+  position:relative; display:flex; align-items:center; border:1.5px solid var(--line); border-radius:12px;
+  padding:11px 40px 11px 14px; cursor:pointer; background:var(--paper); min-height:48px;
   transition:border-color var(--transition), background var(--transition);
 }
 .f-option input { position:absolute; opacity:0; width:1px; height:1px; }
-.f-option span { font-size:15px; color:var(--ink); font-weight:500; line-height:1.4; }
+.f-option span { font-size:14px; color:var(--ink); font-weight:500; line-height:1.3; }
 .f-option::after {
-  content:''; position:absolute; right:18px; top:50%; transform:translateY(-50%);
-  width:20px; height:20px; border-radius:50%; border:1.5px solid #CBD0DD; background:var(--white);
+  content:''; position:absolute; right:14px; top:50%; transform:translateY(-50%);
+  width:18px; height:18px; border-radius:50%; border:1.5px solid #CBD0DD; background:var(--white);
   transition:all var(--transition);
 }
 .f-option:hover { border-color:var(--gold-line); background:var(--white); }
 .f-option.checked { border-color:var(--gold); background:var(--gold-soft); }
 .f-option.checked::after { border-color:var(--gold); background:var(--gold-grad); box-shadow:inset 0 0 0 4px var(--white); }
 .f-option input:focus-visible ~ span { text-decoration:underline; text-decoration-color:var(--gold); }
-.f-nav { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:24px; }
+.f-nav { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:18px; }
+.f-nav .btn { padding:13px 24px; font-size:14.5px; }
 .f-back {
   font-family:var(--sans); font-size:14px; font-weight:600; color:var(--gray);
   background:none; border:none; cursor:pointer; padding:8px 4px; transition:color var(--transition);
 }
 .f-back:hover { color:var(--navy-800); }
 
-/* ─── Seção 02 | Quando a empresa precisa responder ─── */
-.urgency { background:var(--paper); padding-top:0; }
-.urgency-box {
-  display:grid; grid-template-columns:1.05fr .95fr; gap:64px; align-items:center;
-  border-radius:var(--r-lg); padding:60px 60px; position:relative;
-  box-shadow:0 30px 70px rgba(10,21,48,.25);
+/* ─── Seção 02 | faixa de alerta dourada ─── */
+.urgency { background:var(--white); padding:56px 0; }
+.urgency-strip {
+  display:grid; grid-template-columns:auto 1fr auto; gap:30px; align-items:center;
+  padding:34px 40px; border-radius:24px;
+  background:linear-gradient(115deg,#FBF3E1 0%,#F3E0B3 100%); border:1px solid rgba(169,123,34,.25);
 }
-.urgency-box::before { content:''; position:absolute; left:0; top:0; bottom:0; width:5px; background:var(--gold-grad); }
-.urgency-box .body-text { font-size:17px; color:rgba(255,255,255,.78); }
-.urgency-box .btn { margin-top:28px; }
+.urgency-ico { width:62px; height:62px; border-radius:50%; background:var(--navy-900); color:var(--gold-2); display:flex; align-items:center; justify-content:center; box-shadow:0 12px 26px rgba(10,21,48,.25); }
+.urgency-ico svg { width:28px; height:28px; }
+.urgency .eyebrow { margin-bottom:6px; }
+.urgency h2.title { font-size:clamp(19px,1.9vw,24px); margin-bottom:6px; }
+.urgency p { font-size:14.5px; color:#5E5236; line-height:1.6; max-width:640px; }
 
-/* ─── Seção 03 | Defesa trabalhista ─── */
-.cases { background:var(--white); }
-.cases-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:22px; }
-.case-card {
-  flex:0 0 calc(25% - 17px);
-  background:var(--white); border:1px solid var(--line); border-radius:var(--r-md);
-  padding:30px 28px; position:relative; box-shadow:var(--shadow-sm);
-  transition:transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+/* ─── Seção 03 | lista numerada (sem cards) ─── */
+.cases { background:var(--paper); }
+.cases-grid { display:grid; grid-template-columns:.8fr 1.2fr; gap:72px; align-items:start; }
+.cases-head { position:sticky; top:112px; }
+.cases-head .btn { margin-top:28px; }
+.case-list { border-top:1px solid #D9DDE8; }
+.case-list li {
+  display:grid; grid-template-columns:48px 1fr; column-gap:14px; position:relative;
+  padding:20px 0; border-bottom:1px solid #D9DDE8;
 }
-.case-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-md); border-color:var(--gold-line); }
-.case-icon {
-  display:inline-flex; align-items:center; justify-content:center;
-  width:52px; height:52px; border-radius:16px;
-  background:linear-gradient(145deg, var(--navy-700), var(--navy-900));
-  color:var(--gold-2); margin-bottom:20px; box-shadow:0 10px 22px rgba(10,21,48,.22);
+.case-list li::before {
+  content:''; position:absolute; left:-18px; top:20px; bottom:20px; width:3px; border-radius:3px;
+  background:var(--gold-grad); transform:scaleY(0); transition:transform var(--transition);
 }
-.case-icon svg { width:24px; height:24px; }
-.case-card h3 { font-family:var(--serif); font-weight:400; font-size:21px; color:var(--navy-800); line-height:1.22; margin-bottom:10px; }
-.case-card p { font-size:14.5px; color:var(--gray); line-height:1.7; }
+.case-list li:hover::before { transform:scaleY(1); }
+.case-num { grid-row:span 2; font-family:var(--display); font-weight:800; font-size:14px; color:var(--gold-dark); padding-top:3px; letter-spacing:.04em; }
+.case-list h3 { font-family:var(--display); font-weight:700; font-size:17px; color:var(--navy-800); line-height:1.35; margin-bottom:3px; }
+.case-list p { font-size:14.5px; color:var(--gray); line-height:1.6; }
 
-/* ─── Seção 04 | Como funciona ─── */
-.steps-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
-.step {
-  background:linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
-  border:1px solid rgba(255,255,255,.1); border-radius:var(--r-md); padding:32px 28px;
+/* ─── Seção 04 | linha do tempo ─── */
+.timeline { display:grid; grid-template-columns:repeat(3,1fr); gap:40px; position:relative; }
+.timeline::before {
+  content:''; position:absolute; top:27px; left:16.66%; right:16.66%; height:2px;
+  background:linear-gradient(90deg, rgba(217,167,72,.15), rgba(217,167,72,.75), rgba(217,167,72,.15));
 }
-.step-num {
-  display:inline-flex; align-items:center; justify-content:center;
-  width:50px; height:50px; border-radius:50%; background:var(--gold-grad);
-  font-family:var(--serif); font-size:20px; color:var(--navy-900); margin-bottom:20px;
-  box-shadow:0 10px 24px rgba(217,167,72,.3);
+.timeline li { text-align:center; position:relative; }
+.tl-num {
+  width:56px; height:56px; margin:0 auto 20px; border-radius:50%; position:relative; z-index:1;
+  background:var(--navy-900); border:2px solid var(--gold); color:var(--gold-2);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--display); font-weight:800; font-size:16px; box-shadow:0 0 0 8px rgba(217,167,72,.08);
 }
-.step h3 { font-family:var(--serif); font-size:21px; color:var(--white); font-weight:400; margin-bottom:10px; line-height:1.25; }
-.step p { font-size:15px; color:rgba(255,255,255,.7); line-height:1.7; }
-.howto-note {
-  display:flex; align-items:center; justify-content:center; gap:14px; text-align:left;
-  max-width:760px; margin:44px auto 0; padding:18px 26px; border-radius:var(--r-md);
-  background:rgba(217,167,72,.1); border:1px solid rgba(217,167,72,.35);
-  font-family:var(--serif); font-size:clamp(17px,1.7vw,20px); color:var(--white); line-height:1.45;
+.timeline h3 { font-family:var(--display); font-weight:700; font-size:18px; color:var(--white); margin-bottom:8px; line-height:1.3; }
+.timeline p { font-size:14.5px; color:rgba(255,255,255,.7); line-height:1.65; max-width:300px; margin:0 auto; }
+.howto-foot {
+  display:flex; justify-content:space-between; align-items:center; gap:24px;
+  margin-top:52px; padding-top:30px; border-top:1px solid rgba(255,255,255,.1);
 }
-.howto-note svg { flex-shrink:0; width:26px; height:26px; color:var(--gold-2); }
+.howto-note { display:flex; align-items:center; gap:12px; font-family:var(--serif); font-style:italic; font-size:clamp(17px,1.6vw,20px); color:var(--white); line-height:1.4; }
+.howto-note svg { flex-shrink:0; width:24px; height:24px; color:var(--gold-2); }
 
-/* ─── Seção 05 | Foco exclusivo no empregador ─── */
-.authority { background:var(--paper); }
-.authority-grid { display:grid; grid-template-columns:.85fr 1.15fr; gap:72px; align-items:center; }
-.authority-image { aspect-ratio:4/5; border-radius:var(--r-lg); overflow:hidden; position:relative; background:var(--navy-900); box-shadow:var(--shadow-lg); max-width:460px; }
-.authority-image::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg, transparent 60%, rgba(10,21,48,.45)); }
-.authority-image img { width:100%; height:100%; object-fit:cover; object-position:center top; }
-.authority-content .title { margin-bottom:0; }
-.authority-online {
-  display:flex; align-items:center; gap:14px; margin-top:28px; padding:16px 20px;
-  background:var(--navy-900); border-radius:var(--r-md);
-  font-family:var(--serif); font-size:19px; color:var(--white); line-height:1.35;
+/* ─── Seção 05 | foto com moldura e selo ─── */
+.authority { background:var(--white); }
+.authority-grid { display:grid; grid-template-columns:.8fr 1.2fr; gap:84px; align-items:center; }
+.authority-image { position:relative; max-width:420px; width:100%; }
+.authority-image::before { content:''; position:absolute; inset:20px -20px -20px 20px; border:2px solid var(--gold); border-radius:var(--r-lg); }
+.ai-photo { position:relative; aspect-ratio:4/5; border-radius:var(--r-lg); overflow:hidden; box-shadow:var(--shadow-lg); background:var(--navy-900); }
+.ai-photo img { width:100%; height:100%; object-fit:cover; object-position:center top; }
+.authority-badge {
+  position:absolute; z-index:2; left:-26px; bottom:40px; display:flex; align-items:center; gap:12px;
+  background:var(--navy-900); color:var(--white); padding:14px 20px; border-radius:16px; box-shadow:0 18px 40px rgba(10,21,48,.35);
 }
-.authority-online .ab-icon {
-  flex-shrink:0; width:40px; height:40px; border-radius:50%; background:rgba(217,167,72,.14);
-  border:1px solid var(--gold-line); display:flex; align-items:center; justify-content:center; color:var(--gold-2);
-}
-.authority-online .ab-icon svg { width:20px; height:20px; }
-.authority-content .btn { margin-top:32px; }
+.authority-badge strong { font-family:var(--display); font-weight:800; font-size:36px; line-height:1; background:var(--gold-grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.authority-badge span { font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; line-height:1.3; color:rgba(255,255,255,.85); max-width:90px; }
+.authority-content .title { margin-bottom:18px; }
+.authority-online { display:flex; align-items:center; gap:10px; margin-top:20px; font-family:var(--display); font-weight:700; font-size:15.5px; color:var(--navy-800); }
+.authority-online svg { width:22px; height:22px; color:var(--gold-dark); flex-shrink:0; }
+.authority-content .btn { margin-top:28px; }
 
-/* ─── Seção 06 | Como o caso é analisado ─── */
-.diff { background:var(--white); }
-.diff-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
-.diff-item {
-  background:var(--white); border:1px solid var(--line); border-radius:var(--r-md); box-shadow:var(--shadow-sm);
-  padding:34px 30px; transition:transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-}
-.diff-item:hover { transform:translateY(-4px); box-shadow:var(--shadow-md); border-color:var(--gold-line); }
-.diff-item .di-mark {
-  display:inline-flex; align-items:center; justify-content:center;
-  width:48px; height:48px; border-radius:50%; background:linear-gradient(145deg, var(--navy-700), var(--navy-900));
-  color:var(--gold-2); font-size:18px; margin-bottom:20px;
-}
-.diff-item h3 { font-family:var(--serif); font-size:21px; color:var(--navy-800); font-weight:400; margin-bottom:10px; line-height:1.22; }
-.diff-item p { font-size:14.5px; color:var(--gray); line-height:1.7; }
-.diff-item p + p { margin-top:12px; }
+/* ─── Seção 06 | colunas com fio (sem cards) ─── */
+.diff { background:var(--paper-2); padding:84px 0; }
+.diff-head { display:flex; justify-content:space-between; align-items:flex-end; gap:32px; margin-bottom:44px; }
+.diff-head .title { max-width:660px; }
+.diff-cols { display:grid; grid-template-columns:repeat(3,1fr); }
+.diff-col { padding:4px 34px; border-left:1px solid rgba(15,29,64,.14); }
+.diff-col:first-child { padding-left:0; border-left:0; }
+.diff-col svg { width:30px; height:30px; color:var(--gold-dark); margin-bottom:16px; }
+.diff-col h3 { font-family:var(--display); font-weight:700; font-size:17.5px; color:var(--navy-800); margin-bottom:8px; line-height:1.3; }
+.diff-col p { font-size:14.5px; color:var(--gray); line-height:1.7; }
+.diff-col p + p { margin-top:10px; }
 
-/* ─── Seção 07 | Dúvidas frequentes ─── */
-.faq { background:var(--paper); }
-.faq-wrap { max-width:820px; margin:0 auto; display:flex; flex-direction:column; gap:12px; }
-.faq-item {
-  background:var(--white); border:1px solid var(--line); border-radius:18px;
-  overflow:hidden; transition:all var(--transition);
-}
-.faq-item:has(.faq-btn.open) { box-shadow:var(--shadow-sm); border-color:var(--gold-line); }
+/* ─── Seção 07 | FAQ em duas colunas ─── */
+.faq { background:var(--white); }
+.faq-grid { display:grid; grid-template-columns:.8fr 1.2fr; gap:72px; align-items:start; }
+.faq-head { position:sticky; top:112px; }
+.faq-head .btn { margin-top:28px; }
+.faq-list { border-top:1px solid var(--line); }
+.faq-item { border-bottom:1px solid var(--line); }
 .faq-btn {
-  width:100%; background:none; border:none; padding:22px 26px;
+  width:100%; background:none; border:none; padding:20px 0;
   display:flex; justify-content:space-between; align-items:center; gap:20px;
-  font-family:var(--serif); font-size:19px; color:var(--navy-800); cursor:pointer;
-  text-align:left; transition:color var(--transition); line-height:1.35;
+  font-family:var(--display); font-weight:700; font-size:16px; color:var(--navy-800); cursor:pointer;
+  text-align:left; transition:color var(--transition); line-height:1.4;
 }
-.faq-btn.open { color:var(--gold-dark); }
+.faq-btn:hover, .faq-btn.open { color:var(--gold-dark); }
 .faq-icon {
-  flex-shrink:0; width:32px; height:32px; border-radius:50%;
-  background:var(--navy-900); display:flex; align-items:center; justify-content:center;
-  font-size:20px; color:var(--gold-2); transition:all var(--transition); line-height:1;
+  flex-shrink:0; width:30px; height:30px; border-radius:50%; border:1.5px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+  font-size:18px; color:var(--navy-800); transition:all var(--transition); line-height:1;
 }
-.faq-btn.open .faq-icon { background:var(--gold-grad); color:var(--navy-900); transform:rotate(135deg); }
+.faq-btn.open .faq-icon { background:var(--navy-900); border-color:var(--navy-900); color:var(--gold-2); transform:rotate(135deg); }
 .faq-body { max-height:0; overflow:hidden; transition:max-height .35s ease; }
 .faq-body.open { max-height:320px; }
-.faq-body-inner { padding:0 26px 24px; font-size:15.5px; color:var(--gray); line-height:1.8; }
+.faq-body-inner { padding:0 50px 20px 0; font-size:15px; color:var(--gray); line-height:1.75; }
 
 /* ─── Seção 08 | Se há prazo correndo ─── */
-.final-cta { padding:112px 0; }
-.final-grid { display:grid; grid-template-columns:1fr 1.05fr; gap:64px; align-items:center; }
-.final-info .title { margin-bottom:20px; }
-.final-info p { font-size:17px; color:rgba(255,255,255,.78); line-height:1.8; max-width:460px; margin-bottom:32px; }
+.final-cta {
+  background:
+    radial-gradient(ellipse 50% 60% at 100% 50%, rgba(217,167,72,.14), transparent 70%),
+    radial-gradient(ellipse 60% 60% at 0% 0%, rgba(31,68,148,.5), transparent 70%),
+    var(--navy-900);
+}
+.final-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+.final-info .title { margin-bottom:16px; }
+.final-info p { font-size:16.5px; color:rgba(255,255,255,.78); line-height:1.75; max-width:460px; margin-bottom:28px; }
 
 /* ─── Footer ─── */
-footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:60px 0 36px; border-top:1px solid rgba(217,167,72,.18); }
-.footer-top { display:flex; justify-content:space-between; align-items:flex-start; gap:32px; flex-wrap:wrap; padding-bottom:36px; margin-bottom:28px; border-bottom:1px solid rgba(255,255,255,.08); }
+footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:56px 0 34px; border-top:1px solid rgba(217,167,72,.18); }
+.footer-top { display:flex; justify-content:space-between; align-items:flex-start; gap:32px; flex-wrap:wrap; padding-bottom:32px; margin-bottom:26px; border-bottom:1px solid rgba(255,255,255,.08); }
 .footer-brand { font-family:var(--serif); font-style:italic; font-size:22px; color:var(--white); line-height:1.3; }
 .footer-brand span { display:block; font-style:normal; font-family:var(--sans); font-size:10px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold-2); margin-top:6px; }
 .footer-contact { display:flex; flex-direction:column; gap:8px; font-size:14.5px; color:rgba(255,255,255,.72); }
@@ -491,9 +483,9 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:60px 0 
 .footer-bottom p { font-size:13px; color:rgba(255,255,255,.4); }
 .footer-credit strong { color:var(--gold-2); font-weight:600; }
 
-/* ─── Scroll reveal (somente quando há tolerância a movimento) ─── */
+/* ─── Scroll reveal ─── */
 @media (prefers-reduced-motion: no-preference) {
-  .js .reveal { opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); will-change:opacity, transform; }
+  .js .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); will-change:opacity, transform; }
   .js .reveal.in { opacity:1; transform:none; }
   .js .reveal[data-d="1"] { transition-delay:.08s; }
   .js .reveal[data-d="2"] { transition-delay:.16s; }
@@ -503,80 +495,79 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:60px 0 
 /* ─── Responsive ─── */
 @media (min-width:1700px) {
   .container { max-width:1400px; }
-  section { padding:120px 0; }
+  section { padding:112px 0; }
 }
 @media (min-width:1100px) { .header-note { display:block; } }
 @media (max-width:1100px) {
-  .case-card { flex:0 0 calc(33.333% - 15px); }
-  .hero-proof { grid-template-columns:repeat(2, 1fr); gap:16px 0; max-width:620px; }
-  .hero-proof li { justify-content:flex-start; }
-  .hero-proof li:nth-child(3) { border-left:0; }
+  .hero-grid { gap:40px; }
+  .hero-proof li { padding:12px 14px; font-size:13px; }
 }
 @media (max-width:920px) {
-  section { padding:80px 0; }
-  .hero { min-height:0; display:block; padding:0 0 64px; }
-  /* imagem vertical no topo; o texto entra na parte azul (a partir da mesa) */
-  .hero-bg { bottom:auto; }
-  .hero-bg img { height:auto; object-fit:initial; }
-  .hero-bg::after { background:linear-gradient(180deg, rgba(10,21,48,0) 38%, rgba(10,21,48,.55) 52%, var(--navy-900) 72%); }
-  .hero .container { padding-top:min(88vw, 720px); }
-  .hero-inner { max-width:none; }
-  .lead-top { padding:80px 0; }
-  .lead-grid { grid-template-columns:1fr; gap:36px; }
-  .lead-intro { text-align:center; }
-  .lead-sign { justify-content:center; text-align:left; }
-  .lead-top .form-card { max-width:620px; margin:0 auto; width:100%; }
-  .urgency-box { grid-template-columns:1fr; gap:8px; padding:48px 40px; }
-  .authority-grid, .final-grid { grid-template-columns:1fr; gap:44px; }
-  .authority-image { max-width:420px; margin:0 auto; }
-  .final-info { text-align:center; }
-  .final-info p { margin-left:auto; margin-right:auto; }
-  .final-info .btn-row { justify-content:center; }
-  .final-cta .form-card { max-width:620px; margin:0 auto; width:100%; }
-  .case-card { flex:0 0 calc(50% - 11px); }
-  .steps-grid, .diff-grid { grid-template-columns:1fr; gap:16px; }
+  section { padding:72px 0; }
+  .hero { padding:44px 0 60px; }
+  .hero-grid { grid-template-columns:1fr; gap:36px; }
+  .hero-main { max-width:none; }
+  .hero-bg::after { background:linear-gradient(180deg, rgba(10,21,48,.9) 0%, var(--navy-900) 60%); }
+  .hero-side { max-width:620px; width:100%; margin:0 auto; }
+  .form-card--hero { max-width:620px; }
+  .urgency-strip { grid-template-columns:auto 1fr; gap:18px 22px; padding:30px 28px; }
+  .urgency-strip .btn { grid-column:1 / -1; justify-self:start; }
+  .cases-grid, .faq-grid, .authority-grid, .final-grid { grid-template-columns:1fr; gap:40px; }
+  .cases-head, .faq-head { position:static; }
+  .authority-image { margin:0 auto; max-width:360px; }
+  .diff-head { flex-direction:column; align-items:flex-start; }
+  .diff-cols { grid-template-columns:1fr; }
+  .diff-col, .diff-col:first-child { padding:22px 0; border-left:0; border-top:1px solid rgba(15,29,64,.14); }
+  .diff-col:first-child { border-top:0; padding-top:0; }
+  .timeline { grid-template-columns:1fr; gap:28px; }
+  .timeline::before { top:0; bottom:0; left:27px; right:auto; width:2px; height:auto; background:linear-gradient(180deg, rgba(217,167,72,.2), rgba(217,167,72,.75), rgba(217,167,72,.2)); }
+  .timeline li { text-align:left; padding-left:78px; min-height:56px; }
+  .tl-num { position:absolute; left:0; top:0; margin:0; }
+  .timeline p { margin:0; max-width:none; }
+  .howto-foot { flex-direction:column; align-items:flex-start; }
+  .final-cta .form-card { max-width:620px; width:100%; margin:0 auto; }
 }
 @media (max-width:600px) {
   .container { padding:0 20px; }
-  section { padding:68px 0; }
+  section { padding:60px 0; }
   .site-header .container { height:66px; }
-  .hero .container { padding-top:84vw; }
-  .eyebrow { font-size:10.5px; letter-spacing:.1em; padding:7px 13px; }
-  .hero-proof { grid-template-columns:1fr 1fr; gap:18px 10px; margin-top:36px; padding:20px 16px; border-radius:20px; }
-  .hero-proof li, .hero-proof li:nth-child(3) { padding:0; border-left:0; gap:10px; font-size:13px; }
-  .hero-proof svg { width:18px; height:18px; padding:8px; }
-  .lead-top { padding:64px 0; }
-  .form-card { padding:30px 22px 28px; border-radius:24px; }
-  .form-head { gap:12px; margin-bottom:22px; }
-  .form-avatar { width:44px; height:44px; }
-  .f-option { padding:13px 46px 13px 16px; }
-  .f-nav { flex-wrap:wrap; }
-  .urgency-box { padding:40px 24px 40px 30px; }
-  .case-card { flex:0 0 100%; }
-  .howto-note { padding:16px 18px; }
-  .footer-top { flex-direction:column; }
-  .footer-bottom { flex-direction:column; gap:10px; }
   .brand-sub { display:none; }
   .brand-name { font-size:19px; }
   .header-cta { gap:12px; }
   .btn-header { font-size:13px; padding:10px 16px; white-space:nowrap; }
-  .btn-header .arrow { display:none; }
-  .btn-header .cta-xl { display:none; } /* no celular: "Analisar caso" */
-  .faq-btn { font-size:18px; padding:20px 20px; }
-  .faq-body-inner { padding:0 20px 22px; }
+  .btn-header .arrow, .btn-header .cta-xl { display:none; } /* no celular: "Analisar caso" */
+  .hero { padding:32px 0 52px; }
+  .eyebrow--pill { font-size:10.5px; letter-spacing:.1em; padding:7px 13px; margin-bottom:18px; }
+  .hero-sub { font-size:15.5px; margin:14px 0 22px; }
+  .form-card, .form-card--hero { padding:22px 18px 22px; border-radius:22px; }
+  .f-options { grid-template-columns:1fr; }
+  .f-nav { flex-wrap:wrap; }
+  .hero-proof li { padding:12px 12px; gap:10px; font-size:12.5px; }
+  .hero-proof svg { width:16px; height:16px; padding:8px; }
+  .urgency { padding:40px 0; }
+  .urgency-strip { grid-template-columns:1fr; padding:26px 22px; }
+  .urgency-ico { width:52px; height:52px; }
+  .urgency-strip .btn { width:100%; }
+  .case-list li { grid-template-columns:38px 1fr; }
+  .authority-image::before { inset:14px -12px -14px 12px; }
+  .authority-badge { left:-8px; bottom:24px; padding:12px 16px; }
+  .authority-badge strong { font-size:30px; }
+  .faq-btn { font-size:15.5px; }
+  .faq-body-inner { padding-right:0; }
+  .footer-top { flex-direction:column; }
+  .footer-bottom { flex-direction:column; gap:10px; }
   .btn { width:100%; }
   .f-nav .btn { width:auto; }
-  .title br { display:none; }
 }
 @media (max-width:380px) {
   .f-nav .btn { width:100%; }
   .btn-header { padding:9px 13px; }
 }
 
-/* ─── Reduced motion: desliga animações pesadas ─── */
+/* ─── Reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior:auto; }
-  * { animation-duration:.001ms !important; transition-duration:.001ms !important; }
+  * { animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
 }
 </style>
 </head>
@@ -601,7 +592,7 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:60px 0 
     </a>
     <div class="header-cta">
       <span class="header-note">Atendimento online<br>em todo o Brasil</span>
-      <a href="#formulario" class="btn-header" data-to-form>Analisar <span class="cta-xl">o </span>caso<span class="cta-xl"> da empresa</span> <span class="arrow">→</span></a>
+      <a href="#formulario" class="btn-header" data-to-form><span>Analisar <span class="cta-xl">o </span>caso<span class="cta-xl"> da empresa</span></span> <span class="arrow">→</span></a>
     </div>
   </div>
 </header>
@@ -609,237 +600,182 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:60px 0 
 <main>
 
 <!-- ══════════════════════════════════════════════════
-     HERO
+     HERO · texto + formulário | vídeo + benefícios
 ══════════════════════════════════════════════════ -->
 <section class="hero" id="topo">
-  <!-- Imagem da hero preenchendo a seção (desktop horizontal / mobile vertical) -->
-  <div class="hero-bg">
-    <picture>
-      <source media="(max-width: 920px)" srcset="../assets/hero-bg-mobile.webp" width="941" height="1672">
-      <img src="../assets/hero-bg-desktop.webp" alt="Dra. Ana Carolina Mendanha em seu escritório" width="1672" height="941" fetchpriority="high" decoding="async">
-    </picture>
+  <div class="hero-bg" aria-hidden="true">
+    <img src="../assets/hero-bg-desktop.webp" alt="" width="1672" height="941" fetchpriority="high" decoding="async">
   </div>
-  <div class="container">
-    <div class="hero-inner">
-      <span class="eyebrow light reveal">Advogado trabalhista para empresa</span>
-      <h1 class="title light reveal" data-d="1">
-        Sua empresa recebeu uma ação trabalhista, notificação ou intimação? <em>Organize a defesa antes de responder</em>
+  <div class="container hero-grid">
+    <div class="hero-main">
+      <span class="eyebrow eyebrow--pill light reveal">Advogado trabalhista para empresa</span>
+      <h1 class="hero-title reveal" data-d="1">
+        <span class="hero-q">Sua empresa recebeu uma ação trabalhista, notificação ou intimação?</span>
+        <em>Organize a defesa antes de responder</em>
       </h1>
-      <p class="hero-sub reveal" data-d="2">
-        Entenda o prazo, os documentos e os riscos do caso direto com a advogada responsável.
-      </p>
-      <div class="btn-row reveal" data-d="3">
-        <a href="#formulario" class="btn btn-primary" data-to-form>Analisar o caso da empresa <span class="arrow">→</span></a>
-        <a href="https://wa.me/556292280866?text=Ol%C3%A1%2C%20Dra.%20Carolina%21%20Minha%20empresa%20recebeu%20uma%20a%C3%A7%C3%A3o%2C%20notifica%C3%A7%C3%A3o%20ou%20intima%C3%A7%C3%A3o%20trabalhista%20e%20gostaria%20de%20orienta%C3%A7%C3%A3o%20sobre%20como%20responder.%20Pode%20me%20ajudar%3F" target="_blank" rel="noopener" class="btn btn-ghost light" data-wa="hero"><svg class="wa-ico" aria-hidden="true"><use href="#ico-wa"/></svg>Falar com a advogada</a>
+      <p class="hero-sub reveal" data-d="2">Entenda o prazo, os documentos e os riscos do caso direto com a advogada responsável.</p>
+      <div class="form-card form-card--hero lead-anchor reveal" data-d="2" id="formulario" data-lead-form="topo">
+        <div class="form-head">
+          <div class="form-avatar"><img src="../assets/hero-carolina.webp" alt="" width="439" height="659" loading="lazy" decoding="async"></div>
+          <div>
+            <h2>Conte o que sua empresa recebeu</h2>
+            <p>Leva menos de 1 minuto.</p>
+          </div>
+        </div>
+        <div class="form-progress">
+          <div class="form-progress-label" data-progress-text>Etapa 1 de 7</div>
+          <div class="form-progress-bar"><div class="form-progress-fill" data-progress-fill></div></div>
+        </div>
+
+        <form novalidate>
+          <!-- 01 · pergunta qualificativa -->
+          <fieldset class="f-step active">
+            <legend class="f-q"><span class="f-num">01</span>Qual é a situação da empresa?</legend>
+            <div class="f-options">
+              <label class="f-option"><input type="radio" name="situacao" value="acao"><span>Ação trabalhista</span></label>
+              <label class="f-option"><input type="radio" name="situacao" value="notificacao"><span>Notificação</span></label>
+              <label class="f-option"><input type="radio" name="situacao" value="intimacao"><span>Intimação</span></label>
+              <label class="f-option"><input type="radio" name="situacao" value="audiencia"><span>Audiência marcada</span></label>
+              <label class="f-option"><input type="radio" name="situacao" value="outra"><span>Outra situação trabalhista</span></label>
+            </div>
+          </fieldset>
+
+          <!-- 02 · CNPJ: só com CNPJ válido as demais perguntas são liberadas -->
+          <div class="f-step">
+            <label class="f-q" for="f-cnpj-topo"><span class="f-num">02</span>Inclua seu CNPJ para entrar em contato com a Dra.</label>
+            <p class="f-hint">Atendimento exclusivo para empresas.</p>
+            <div class="f-fields">
+              <input class="f-input" type="text" id="f-cnpj-topo" name="cnpj" data-validate="cnpj" inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" maxlength="18" placeholder="00.000.000/0000-00">
+            </div>
+            <p class="f-error" hidden>Digite um CNPJ válido para continuar.</p>
+            <div class="f-nav"><button type="button" class="f-back" data-back>← Voltar</button><button type="button" class="btn btn-primary is-inactive" data-next>Continuar <span class="arrow">→</span></button></div>
+          </div>
+
+          <fieldset class="f-step">
+            <legend class="f-q"><span class="f-num">03</span>Existe algum prazo ou audiência marcada?</legend>
+            <div class="f-options">
+              <label class="f-option"><input type="radio" name="prazo" value="sim"><span>Sim</span></label>
+              <label class="f-option"><input type="radio" name="prazo" value="nao"><span>Não</span></label>
+              <label class="f-option"><input type="radio" name="prazo" value="nao_sei"><span>Não sei informar</span></label>
+            </div>
+            <div class="f-nav"><button type="button" class="f-back" data-back>← Voltar</button></div>
+          </fieldset>
+
+          <div class="f-step">
+            <label class="f-q" for="f-data-topo"><span class="f-num">04</span>Quando o documento foi recebido ou para quando está marcada a audiência?</label>
+            <div class="f-fields">
+              <input class="f-input" type="text" id="f-data-topo" name="data" placeholder="Ex.: recebido em 05/09 ou audiência em 22/10">
+            </div>
+            <p class="f-error" hidden>Informe a data para continuar.</p>
+            <div class="f-nav"><button type="button" class="f-back" data-back>← Voltar</button><button type="button" class="btn btn-primary is-inactive" data-next>Continuar <span class="arrow">→</span></button></div>
+          </div>
+
+          <div class="f-step">
+            <label class="f-q" for="f-nome-topo"><span class="f-num">05</span>Informe seu nome e o nome da empresa</label>
+            <div class="f-fields">
+              <input class="f-input" type="text" id="f-nome-topo" name="nome" autocomplete="name" placeholder="Seu nome" aria-label="Seu nome">
+              <input class="f-input" type="text" name="empresa" autocomplete="organization" placeholder="Nome da empresa" aria-label="Nome da empresa">
+            </div>
+            <p class="f-error" hidden>Preencha seu nome e o nome da empresa para continuar.</p>
+            <div class="f-nav"><button type="button" class="f-back" data-back>← Voltar</button><button type="button" class="btn btn-primary is-inactive" data-next>Continuar <span class="arrow">→</span></button></div>
+          </div>
+
+          <div class="f-step">
+            <label class="f-q" for="f-cidade-topo"><span class="f-num">06</span>Em qual cidade e estado está a empresa?</label>
+            <div class="f-fields">
+              <input class="f-input" type="text" id="f-cidade-topo" name="cidade" autocomplete="address-level2" placeholder="Ex.: Goiânia / GO">
+            </div>
+            <p class="f-error" hidden>Informe a cidade e o estado para continuar.</p>
+            <div class="f-nav"><button type="button" class="f-back" data-back>← Voltar</button><button type="button" class="btn btn-primary is-inactive" data-next>Continuar <span class="arrow">→</span></button></div>
+          </div>
+
+          <div class="f-step">
+            <label class="f-q" for="f-whatsapp-topo"><span class="f-num">07</span>Qual é o seu WhatsApp?</label>
+            <div class="f-fields">
+              <input class="f-input" type="tel" id="f-whatsapp-topo" name="whatsapp" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000">
+            </div>
+            <p class="f-error" hidden>Digite um WhatsApp válido com DDD para continuar.</p>
+            <div class="f-nav"><button type="button" class="f-back" data-back>← Voltar</button><button type="submit" class="btn btn-primary is-inactive" data-next>Enviar minha situação <span class="arrow">→</span></button></div>
+          </div>
+        </form>
       </div>
     </div>
-    <ul class="hero-proof reveal" data-d="3">
-      <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><span>18 anos de atuação</span></li>
-      <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg><span>Foco na defesa de quem emprega</span></li>
-      <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01"/><path d="M12 10h.01"/><path d="M16 10h.01"/></svg><span>Contato direto com a advogada</span></li>
-      <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg><span>Atendimento online em todo o Brasil</span></li>
-    </ul>
+
+    <aside class="hero-side reveal" data-d="2" aria-label="Vídeo e diferenciais">
+      <!-- [VÍDEO DA DRA. CAROLINA] Embed do YouTube: preencher data-youtube-id com o ID do vídeo
+           (ex.: youtube.com/watch?v=ID). O iframe só carrega no clique; até lá a capa é a foto. -->
+      <div class="video-card" data-youtube-id="">
+        <img src="../assets/hero-bg-desktop.webp" alt="Dra. Ana Carolina Mendanha" width="1672" height="941" decoding="async">
+        <button type="button" class="video-play" aria-label="Assistir ao vídeo da Dra. Ana Carolina Mendanha">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11-6.86a1 1 0 0 0 0-1.72l-11-6.86A1 1 0 0 0 8 5.14z"/></svg>
+        </button>
+        <span class="video-soon" hidden>Vídeo em breve</span>
+      </div>
+      <ul class="hero-proof">
+        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><span>18 anos de atuação</span></li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg><span>Foco na defesa de quem emprega</span></li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01"/><path d="M12 10h.01"/><path d="M16 10h.01"/></svg><span>Contato direto com a advogada</span></li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg><span>Atendimento online em todo o Brasil</span></li>
+      </ul>
+    </aside>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════
-     FORMULÁRIO CONVERSACIONAL (primeira dobra)
-══════════════════════════════════════════════════ -->
-<section class="lead-top">
-  <div class="container lead-grid">
-    <div class="lead-intro reveal">
-      <h2 class="title">Conte o que sua empresa recebeu</h2>
-      <p class="lead-time"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Leva menos de 1 minuto.</p>
-      <div class="lead-sign">
-        <img src="../assets/hero-carolina.webp" alt="" width="439" height="659" loading="lazy" decoding="async">
-        <div><strong>Dra. Ana Carolina Mendanha</strong><span>Advocacia Trabalhista Empresarial</span></div>
-      </div>
-    </div>
-    <div class="form-card lead-anchor reveal" data-d="1" id="formulario" data-lead-form="topo">
-      <div class="form-progress">
-        <div class="form-progress-label" data-progress-text>Etapa 1 de 6</div>
-        <div class="form-progress-bar"><div class="form-progress-fill" data-progress-fill></div></div>
-      </div>
-
-      <form novalidate>
-        <fieldset class="f-step active">
-          <legend class="f-q"><span class="f-num">01</span>Qual é a situação da empresa?</legend>
-          <div class="f-options">
-            <label class="f-option"><input type="radio" name="situacao" value="acao"><span>Ação trabalhista</span></label>
-            <label class="f-option"><input type="radio" name="situacao" value="notificacao"><span>Notificação</span></label>
-            <label class="f-option"><input type="radio" name="situacao" value="intimacao"><span>Intimação</span></label>
-            <label class="f-option"><input type="radio" name="situacao" value="audiencia"><span>Audiência marcada</span></label>
-            <label class="f-option"><input type="radio" name="situacao" value="outra"><span>Outra situação trabalhista</span></label>
-          </div>
-        </fieldset>
-
-        <fieldset class="f-step">
-          <legend class="f-q"><span class="f-num">02</span>Existe algum prazo ou audiência marcada?</legend>
-          <div class="f-options">
-            <label class="f-option"><input type="radio" name="prazo" value="sim"><span>Sim</span></label>
-            <label class="f-option"><input type="radio" name="prazo" value="nao"><span>Não</span></label>
-            <label class="f-option"><input type="radio" name="prazo" value="nao_sei"><span>Não sei informar</span></label>
-          </div>
-          <div class="f-nav"><button type="button" class="f-back" data-back>← Voltar</button></div>
-        </fieldset>
-
-        <div class="f-step">
-          <label class="f-q" for="f-data-topo"><span class="f-num">03</span>Quando o documento foi recebido ou para quando está marcada a audiência?</label>
-          <div class="f-fields">
-            <input class="f-input" type="text" id="f-data-topo" name="data" placeholder="Ex.: recebido em 05/09 ou audiência em 22/10">
-          </div>
-          <p class="f-error" hidden>Informe a data para continuar.</p>
-          <div class="f-nav">
-            <button type="button" class="f-back" data-back>← Voltar</button>
-            <button type="button" class="btn btn-primary is-inactive" data-next>Continuar <span class="arrow">→</span></button>
-          </div>
-        </div>
-
-        <div class="f-step">
-          <label class="f-q" for="f-nome-topo"><span class="f-num">04</span>Informe seu nome e o nome da empresa</label>
-          <div class="f-fields">
-            <input class="f-input" type="text" id="f-nome-topo" name="nome" autocomplete="name" placeholder="Seu nome" aria-label="Seu nome">
-            <input class="f-input" type="text" name="empresa" autocomplete="organization" placeholder="Nome da empresa" aria-label="Nome da empresa">
-          </div>
-          <p class="f-error" hidden>Preencha seu nome e o nome da empresa para continuar.</p>
-          <div class="f-nav">
-            <button type="button" class="f-back" data-back>← Voltar</button>
-            <button type="button" class="btn btn-primary is-inactive" data-next>Continuar <span class="arrow">→</span></button>
-          </div>
-        </div>
-
-        <div class="f-step">
-          <label class="f-q" for="f-cidade-topo"><span class="f-num">05</span>Em qual cidade e estado está a empresa?</label>
-          <div class="f-fields">
-            <input class="f-input" type="text" id="f-cidade-topo" name="cidade" autocomplete="address-level2" placeholder="Ex.: Goiânia / GO">
-          </div>
-          <p class="f-error" hidden>Informe a cidade e o estado para continuar.</p>
-          <div class="f-nav">
-            <button type="button" class="f-back" data-back>← Voltar</button>
-            <button type="button" class="btn btn-primary is-inactive" data-next>Continuar <span class="arrow">→</span></button>
-          </div>
-        </div>
-
-        <div class="f-step">
-          <label class="f-q" for="f-whatsapp-topo"><span class="f-num">06</span>Qual é o seu WhatsApp?</label>
-          <div class="f-fields">
-            <input class="f-input" type="tel" id="f-whatsapp-topo" name="whatsapp" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000">
-          </div>
-          <p class="f-error" hidden>Digite um WhatsApp válido com DDD para continuar.</p>
-          <div class="f-nav">
-            <button type="button" class="f-back" data-back>← Voltar</button>
-            <button type="submit" class="btn btn-primary is-inactive" data-next>Enviar minha situação <span class="arrow">→</span></button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════
-     SEÇÃO 02 | QUANDO A EMPRESA PRECISA RESPONDER?
+     SEÇÃO 02 | QUANDO A EMPRESA PRECISA RESPONDER? (faixa)
 ══════════════════════════════════════════════════ -->
 <section class="urgency">
   <div class="container">
-    <div class="urgency-box dark reveal">
+    <div class="urgency-strip reveal">
+      <div class="urgency-ico"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg></div>
       <div>
-        <span class="eyebrow light">Quando a empresa precisa responder?</span>
-        <h2 class="title light">Se chegou uma ação, notificação ou intimação, o prazo já precisa ser considerado</h2>
+        <span class="eyebrow">Quando a empresa precisa responder?</span>
+        <h2 class="title">Se chegou uma ação, notificação ou intimação, <em>o prazo já precisa ser considerado</em></h2>
+        <p>Também vale para quem já tem audiência marcada. Antes de responder, é preciso saber o que foi pedido e quais documentos a empresa consegue reunir.</p>
       </div>
-      <div>
-        <p class="body-text">
-          Também vale para quem já tem audiência marcada. Antes de responder, é preciso saber o que foi
-          pedido e quais documentos a empresa consegue reunir.
-        </p>
-        <a href="#contato" class="btn btn-primary" data-to-form>Analisar o que minha empresa recebeu <span class="arrow">→</span></a>
-      </div>
+      <a href="#formulario" class="btn btn-navy" data-to-form>Analisar o que minha empresa recebeu <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════
-     SEÇÃO 03 | DEFESA TRABALHISTA PARA EMPRESAS
+     SEÇÃO 03 | DEFESA TRABALHISTA PARA EMPRESAS (lista)
 ══════════════════════════════════════════════════ -->
 <section class="cases">
-  <div class="container">
-    <div class="section-head center reveal">
+  <div class="container cases-grid">
+    <div class="cases-head reveal">
       <span class="eyebrow">Defesa trabalhista para empresas</span>
-      <h2 class="title">Defesa em ação trabalhista começa pelo <br>que foi pedido contra a empresa</h2>
-    </div>
-    <div class="cases-grid">
-      <div class="case-card reveal">
-        <div class="case-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div>
-        <h3>Defesa em ação trabalhista</h3>
-        <p>Leitura da reclamação para identificar pedidos, prazo de defesa e documentos que podem sustentar a resposta da empresa.</p>
-      </div>
-      <div class="case-card reveal" data-d="1">
-        <div class="case-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg></div>
-        <h3>Resposta a notificação</h3>
-        <p>Verificação do conteúdo e do prazo antes de preparar qualquer manifestação.</p>
-      </div>
-      <div class="case-card reveal" data-d="2">
-        <div class="case-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg></div>
-        <h3>Intimação recebida</h3>
-        <p>Análise do que foi determinado, do prazo e da providência que precisa ser avaliada.</p>
-      </div>
-      <div class="case-card reveal" data-d="3">
-        <div class="case-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></div>
-        <h3>Audiência marcada</h3>
-        <p>Preparação da empresa a partir da data, dos pedidos discutidos e dos documentos disponíveis.</p>
-      </div>
-      <div class="case-card reveal">
-        <div class="case-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg></div>
-        <h3>Análise de risco</h3>
-        <p>Avaliação dos pedidos, documentos e pontos de exposição antes de definir a condução do caso.</p>
-      </div>
-      <div class="case-card reveal" data-d="1">
-        <div class="case-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg></div>
-        <h3>Acordos e negociações</h3>
-        <p>Leitura do cenário antes de aceitar, propor ou negociar condições.</p>
-      </div>
-      <div class="case-card reveal" data-d="2">
-        <div class="case-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-        <h3>Pedidos de vínculo, horas extras e verbas</h3>
-        <p>Análise do que foi alegado em comparação com contratos, jornada, pagamentos e demais registros da empresa.</p>
-      </div>
-    </div>
-    <div class="section-cta center reveal">
+      <h2 class="title">Defesa em ação trabalhista começa pelo <em>que foi pedido contra a empresa</em></h2>
       <a href="#contato" class="btn btn-primary" data-to-form>Relatar meu caso <span class="arrow">→</span></a>
     </div>
+    <ol class="case-list reveal" data-d="1">
+        <li><span class="case-num">01</span><h3>Defesa em ação trabalhista</h3><p>Leitura da reclamação para identificar pedidos, prazo de defesa e documentos que podem sustentar a resposta da empresa.</p></li>
+        <li><span class="case-num">02</span><h3>Resposta a notificação</h3><p>Verificação do conteúdo e do prazo antes de preparar qualquer manifestação.</p></li>
+        <li><span class="case-num">03</span><h3>Intimação recebida</h3><p>Análise do que foi determinado, do prazo e da providência que precisa ser avaliada.</p></li>
+        <li><span class="case-num">04</span><h3>Audiência marcada</h3><p>Preparação da empresa a partir da data, dos pedidos discutidos e dos documentos disponíveis.</p></li>
+        <li><span class="case-num">05</span><h3>Análise de risco</h3><p>Avaliação dos pedidos, documentos e pontos de exposição antes de definir a condução do caso.</p></li>
+        <li><span class="case-num">06</span><h3>Acordos e negociações</h3><p>Leitura do cenário antes de aceitar, propor ou negociar condições.</p></li>
+        <li><span class="case-num">07</span><h3>Pedidos de vínculo, horas extras e verbas</h3><p>Análise do que foi alegado em comparação com contratos, jornada, pagamentos e demais registros da empresa.</p></li>
+    </ol>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════
-     SEÇÃO 04 | COMO FUNCIONA
+     SEÇÃO 04 | COMO FUNCIONA (linha do tempo)
 ══════════════════════════════════════════════════ -->
 <section class="howto dark">
   <div class="container">
     <div class="section-head center reveal">
       <span class="eyebrow light">Como funciona</span>
-      <h2 class="title light">Sua empresa recebeu notificação trabalhista? <br>Entenda o prazo e o que o documento exige</h2>
+      <h2 class="title light">Sua empresa recebeu notificação trabalhista? <em>Entenda o prazo e o que o documento exige</em></h2>
     </div>
-    <div class="steps-grid">
-      <div class="step reveal">
-        <div class="step-num">01</div>
-        <h3>Você envia a situação</h3>
-        <p>Encaminhe a ação, notificação ou intimação. Se houver audiência, informe a data.</p>
-      </div>
-      <div class="step reveal" data-d="1">
-        <div class="step-num">02</div>
-        <h3>O caso é lido inicialmente</h3>
-        <p>São verificados prazo, pedidos, documentos disponíveis e pontos que exigem atenção.</p>
-      </div>
-      <div class="step reveal" data-d="2">
-        <div class="step-num">03</div>
-        <h3>Você entende o que precisa preparar</h3>
-        <p>A orientação mostra quais informações reunir e o que precisa ser avaliado antes da resposta ou da audiência.</p>
-      </div>
-    </div>
-    <p class="howto-note reveal">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
-      A primeira análise organiza o caso e não obriga a empresa a contratar a defesa.
-    </p>
-    <div class="section-cta center reveal" style="margin-top:40px;">
+    <ol class="timeline">
+      <li class="reveal"><span class="tl-num">01</span><h3>Você envia a situação</h3><p>Encaminhe a ação, notificação ou intimação. Se houver audiência, informe a data.</p></li>
+      <li class="reveal" data-d="1"><span class="tl-num">02</span><h3>O caso é lido inicialmente</h3><p>São verificados prazo, pedidos, documentos disponíveis e pontos que exigem atenção.</p></li>
+      <li class="reveal" data-d="2"><span class="tl-num">03</span><h3>Você entende o que precisa preparar</h3><p>A orientação mostra quais informações reunir e o que precisa ser avaliado antes da resposta ou da audiência.</p></li>
+    </ol>
+    <div class="howto-foot reveal">
+      <p class="howto-note"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>A primeira análise organiza o caso e não obriga a empresa a contratar a defesa.</p>
       <a href="#contato" class="btn btn-primary" data-to-form>Enviar minha situação <span class="arrow">→</span></a>
     </div>
   </div>
@@ -849,59 +785,37 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:60px 0 
      SEÇÃO 05 | FOCO EXCLUSIVO NO EMPREGADOR
 ══════════════════════════════════════════════════ -->
 <section class="authority">
-  <div class="container">
-    <div class="authority-grid">
-      <div class="authority-image reveal">
-        <img src="../assets/sobre-carolina.webp" alt="Dra. Ana Carolina Mendanha, advogada trabalhista empresarial" width="853" height="1280" loading="lazy" decoding="async">
-      </div>
-      <div class="authority-content reveal" data-d="1">
-        <span class="eyebrow">Foco exclusivo no empregador</span>
-        <h2 class="title">18 anos atuando em Direito do Trabalho pelo lado de quem emprega</h2>
-        <div class="divider-gold"></div>
-        <p class="body-text">
-          A Dra. Ana Carolina Mendanha atua exclusivamente na área trabalhista, com foco na defesa de
-          empresas e empregadores. O atendimento é direto com a advogada responsável, desde a análise
-          inicial até a condução do caso.
-        </p>
-        <p class="authority-online">
-          <span class="ab-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></span>
-          Atendimento 100% online para empresas em todo o Brasil.
-        </p>
-        <a href="https://wa.me/556292280866?text=Ol%C3%A1%2C%20Dra.%20Carolina%21%20Minha%20empresa%20recebeu%20uma%20a%C3%A7%C3%A3o%2C%20notifica%C3%A7%C3%A3o%20ou%20intima%C3%A7%C3%A3o%20trabalhista%20e%20gostaria%20de%20orienta%C3%A7%C3%A3o%20sobre%20como%20responder.%20Pode%20me%20ajudar%3F" target="_blank" rel="noopener" class="btn btn-primary" data-wa="autoridade"><svg class="wa-ico" aria-hidden="true"><use href="#ico-wa"/></svg>Falar com a Dra. Ana Carolina</a>
-      </div>
+  <div class="container authority-grid">
+    <div class="authority-image reveal">
+      <div class="ai-photo"><img src="../assets/sobre-carolina.webp" alt="Dra. Ana Carolina Mendanha, advogada trabalhista empresarial" width="853" height="1280" loading="lazy" decoding="async"></div>
+      <div class="authority-badge"><strong>18</strong><span>anos de atuação</span></div>
+    </div>
+    <div class="authority-content reveal" data-d="1">
+      <span class="eyebrow">Foco exclusivo no empregador</span>
+      <h2 class="title">18 anos atuando em Direito do Trabalho <em>pelo lado de quem emprega</em></h2>
+      <p class="body-text">A Dra. Ana Carolina Mendanha atua exclusivamente na área trabalhista, com foco na defesa de empresas e empregadores. O atendimento é direto com a advogada responsável, desde a análise inicial até a condução do caso.</p>
+      <p class="authority-online"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>Atendimento 100% online para empresas em todo o Brasil.</p>
+      <a href="https://wa.me/556292280866?text=Ol%C3%A1%2C%20Dra.%20Carolina%21%20Minha%20empresa%20recebeu%20uma%20a%C3%A7%C3%A3o%2C%20notifica%C3%A7%C3%A3o%20ou%20intima%C3%A7%C3%A3o%20trabalhista%20e%20gostaria%20de%20orienta%C3%A7%C3%A3o%20sobre%20como%20responder.%20Pode%20me%20ajudar%3F" target="_blank" rel="noopener" class="btn btn-navy" data-wa="autoridade"><svg class="wa-ico" aria-hidden="true"><use href="#ico-wa"/></svg>Falar com a Dra. Ana Carolina</a>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════
-     SEÇÃO 06 | COMO O CASO É ANALISADO
+     SEÇÃO 06 | COMO O CASO É ANALISADO (colunas)
 ══════════════════════════════════════════════════ -->
 <section class="diff">
   <div class="container">
-    <div class="section-head center reveal">
-      <span class="eyebrow">Como o caso é analisado</span>
-      <h2 class="title">A defesa parte dos documentos, da rotina da empresa e do que foi pedido no processo</h2>
-    </div>
-    <div class="diff-grid">
-      <div class="diff-item reveal">
-        <div class="di-mark">✦</div>
-        <h3>Leitura pelo lado do empregador</h3>
-        <p>Contratos, jornada, pagamentos, comunicações e decisões internas ajudam a entender o contexto da reclamação.</p>
+    <div class="diff-head reveal">
+      <div>
+        <span class="eyebrow">Como o caso é analisado</span>
+        <h2 class="title">A defesa parte dos documentos, da rotina da empresa e <em>do que foi pedido no processo</em></h2>
       </div>
-      <div class="diff-item reveal" data-d="1">
-        <div class="di-mark">✦</div>
-        <h3>Orientação honesta</h3>
-        <p>Os riscos e as possibilidades são apresentados de acordo com o que os documentos e o caso permitem avaliar, sem promessa de resultado.</p>
-      </div>
-      <div class="diff-item reveal" data-d="2">
-        <div class="di-mark">✦</div>
-        <h3>Contato direto</h3>
-        <p>A empresa fala com a advogada responsável pela condução, sem passar por uma esteira impessoal de atendimento.</p>
-        <p>Depois da demanda, contratos e rotinas trabalhistas também podem ser revisados quando o caso revelar pontos que merecem correção.</p>
-      </div>
-    </div>
-    <div class="section-cta center reveal">
       <a href="https://wa.me/556292280866?text=Ol%C3%A1%2C%20Dra.%20Carolina%21%20Minha%20empresa%20recebeu%20uma%20a%C3%A7%C3%A3o%2C%20notifica%C3%A7%C3%A3o%20ou%20intima%C3%A7%C3%A3o%20trabalhista%20e%20gostaria%20de%20orienta%C3%A7%C3%A3o%20sobre%20como%20responder.%20Pode%20me%20ajudar%3F" target="_blank" rel="noopener" class="btn btn-primary" data-wa="analise"><svg class="wa-ico" aria-hidden="true"><use href="#ico-wa"/></svg>Falar sobre meu caso</a>
+    </div>
+    <div class="diff-cols">
+      <div class="diff-col reveal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg><h3>Leitura pelo lado do empregador</h3><p>Contratos, jornada, pagamentos, comunicações e decisões internas ajudam a entender o contexto da reclamação.</p></div>
+      <div class="diff-col reveal" data-d="1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg><h3>Orientação honesta</h3><p>Os riscos e as possibilidades são apresentados de acordo com o que os documentos e o caso permitem avaliar, sem promessa de resultado.</p></div>
+      <div class="diff-col reveal" data-d="2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg><h3>Contato direto</h3><p>A empresa fala com a advogada responsável pela condução, sem passar por uma esteira impessoal de atendimento.</p><p>Depois da demanda, contratos e rotinas trabalhistas também podem ser revisados quando o caso revelar pontos que merecem correção.</p></div>
     </div>
   </div>
 </section>
@@ -910,12 +824,13 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:60px 0 
      SEÇÃO 07 | DÚVIDAS FREQUENTES (acordeão fechado por padrão)
 ══════════════════════════════════════════════════ -->
 <section class="faq">
-  <div class="container">
-    <div class="section-head center reveal">
+  <div class="container faq-grid">
+    <div class="faq-head reveal">
       <span class="eyebrow">Dúvidas frequentes</span>
-      <h2 class="title">O que costuma surgir logo depois de uma <br>ação, notificação ou intimação</h2>
+      <h2 class="title">O que costuma surgir logo depois de uma <em>ação, notificação ou intimação</em></h2>
+      <a href="#contato" class="btn btn-primary" data-to-form>Analisar o caso da empresa <span class="arrow">→</span></a>
     </div>
-    <div class="faq-wrap reveal">
+    <div class="faq-list reveal" data-d="1">
       <div class="faq-item">
         <button class="faq-btn" type="button" aria-expanded="false">
           Recebi uma notificação trabalhista. O que fazer?
@@ -985,9 +900,6 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:60px 0 
         </div></div>
       </div>
     </div>
-    <div class="section-cta center reveal">
-      <a href="#contato" class="btn btn-primary" data-to-form>Analisar o caso da empresa <span class="arrow">→</span></a>
-    </div>
   </div>
 </section>
 
@@ -995,19 +907,17 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:60px 0 
      SEÇÃO 08 | SE HÁ PRAZO CORRENDO
 ══════════════════════════════════════════════════ -->
 <section class="final-cta dark">
-  <div class="container">
-    <div class="final-grid">
-      <div class="final-info reveal">
-        <span class="eyebrow light">Se há prazo correndo</span>
-        <h2 class="title light">Envie o que sua empresa recebeu antes de preparar a resposta</h2>
-        <p>Organize prazo, documentos e riscos do caso em uma primeira análise direto com a advogada responsável.</p>
-        <div class="btn-row">
-          <a href="#contato" class="btn btn-primary" data-to-form>Analisar o caso da empresa <span class="arrow">→</span></a>
-          <a href="https://wa.me/556292280866?text=Ol%C3%A1%2C%20Dra.%20Carolina%21%20Minha%20empresa%20recebeu%20uma%20a%C3%A7%C3%A3o%2C%20notifica%C3%A7%C3%A3o%20ou%20intima%C3%A7%C3%A3o%20trabalhista%20e%20gostaria%20de%20orienta%C3%A7%C3%A3o%20sobre%20como%20responder.%20Pode%20me%20ajudar%3F" target="_blank" rel="noopener" class="btn btn-ghost light" data-wa="final"><svg class="wa-ico" aria-hidden="true"><use href="#ico-wa"/></svg>Falar com advogada</a>
-        </div>
+  <div class="container final-grid">
+    <div class="final-info reveal">
+      <span class="eyebrow light">Se há prazo correndo</span>
+      <h2 class="title light">Envie o que sua empresa recebeu <em>antes de preparar a resposta</em></h2>
+      <p>Organize prazo, documentos e riscos do caso em uma primeira análise direto com a advogada responsável.</p>
+      <div class="btn-row">
+        <a href="#contato" class="btn btn-primary" data-to-form>Analisar o caso da empresa <span class="arrow">→</span></a>
+        <a href="https://wa.me/556292280866?text=Ol%C3%A1%2C%20Dra.%20Carolina%21%20Minha%20empresa%20recebeu%20uma%20a%C3%A7%C3%A3o%2C%20notifica%C3%A7%C3%A3o%20ou%20intima%C3%A7%C3%A3o%20trabalhista%20e%20gostaria%20de%20orienta%C3%A7%C3%A3o%20sobre%20como%20responder.%20Pode%20me%20ajudar%3F" target="_blank" rel="noopener" class="btn btn-ghost light" data-wa="final"><svg class="wa-ico" aria-hidden="true"><use href="#ico-wa"/></svg>Falar com advogada</a>
       </div>
-
-      <div class="form-card lead-anchor reveal" data-d="1" id="contato" data-lead-form="final">
+    </div>
+    <div class="form-card  lead-anchor reveal" data-d="1" id="contato" data-lead-form="final">
         <div class="form-head">
           <div class="form-avatar"><img src="../assets/hero-carolina.webp" alt="" width="439" height="659" loading="lazy" decoding="async"></div>
           <div>
@@ -1016,11 +926,12 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:60px 0 
           </div>
         </div>
         <div class="form-progress">
-          <div class="form-progress-label" data-progress-text>Etapa 1 de 6</div>
+          <div class="form-progress-label" data-progress-text>Etapa 1 de 7</div>
           <div class="form-progress-bar"><div class="form-progress-fill" data-progress-fill></div></div>
         </div>
 
         <form novalidate>
+          <!-- 01 · pergunta qualificativa -->
           <fieldset class="f-step active">
             <legend class="f-q"><span class="f-num">01</span>Qual é a situação da empresa?</legend>
             <div class="f-options">
@@ -1032,8 +943,19 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:60px 0 
             </div>
           </fieldset>
 
+          <!-- 02 · CNPJ: só com CNPJ válido as demais perguntas são liberadas -->
+          <div class="f-step">
+            <label class="f-q" for="f-cnpj-final"><span class="f-num">02</span>Inclua seu CNPJ para entrar em contato com a Dra.</label>
+            <p class="f-hint">Atendimento exclusivo para empresas.</p>
+            <div class="f-fields">
+              <input class="f-input" type="text" id="f-cnpj-final" name="cnpj" data-validate="cnpj" inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" maxlength="18" placeholder="00.000.000/0000-00">
+            </div>
+            <p class="f-error" hidden>Digite um CNPJ válido para continuar.</p>
+            <div class="f-nav"><button type="button" class="f-back" data-back>← Voltar</button><button type="button" class="btn btn-primary is-inactive" data-next>Continuar <span class="arrow">→</span></button></div>
+          </div>
+
           <fieldset class="f-step">
-            <legend class="f-q"><span class="f-num">02</span>Existe algum prazo ou audiência marcada?</legend>
+            <legend class="f-q"><span class="f-num">03</span>Existe algum prazo ou audiência marcada?</legend>
             <div class="f-options">
               <label class="f-option"><input type="radio" name="prazo" value="sim"><span>Sim</span></label>
               <label class="f-option"><input type="radio" name="prazo" value="nao"><span>Não</span></label>
@@ -1043,56 +965,43 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:60px 0 
           </fieldset>
 
           <div class="f-step">
-            <label class="f-q" for="f-data-final"><span class="f-num">03</span>Quando o documento foi recebido ou para quando está marcada a audiência?</label>
+            <label class="f-q" for="f-data-final"><span class="f-num">04</span>Quando o documento foi recebido ou para quando está marcada a audiência?</label>
             <div class="f-fields">
               <input class="f-input" type="text" id="f-data-final" name="data" placeholder="Ex.: recebido em 05/09 ou audiência em 22/10">
             </div>
             <p class="f-error" hidden>Informe a data para continuar.</p>
-            <div class="f-nav">
-              <button type="button" class="f-back" data-back>← Voltar</button>
-              <button type="button" class="btn btn-primary is-inactive" data-next>Continuar <span class="arrow">→</span></button>
-            </div>
+            <div class="f-nav"><button type="button" class="f-back" data-back>← Voltar</button><button type="button" class="btn btn-primary is-inactive" data-next>Continuar <span class="arrow">→</span></button></div>
           </div>
 
           <div class="f-step">
-            <label class="f-q" for="f-nome-final"><span class="f-num">04</span>Informe seu nome e o nome da empresa</label>
+            <label class="f-q" for="f-nome-final"><span class="f-num">05</span>Informe seu nome e o nome da empresa</label>
             <div class="f-fields">
               <input class="f-input" type="text" id="f-nome-final" name="nome" autocomplete="name" placeholder="Seu nome" aria-label="Seu nome">
               <input class="f-input" type="text" name="empresa" autocomplete="organization" placeholder="Nome da empresa" aria-label="Nome da empresa">
             </div>
             <p class="f-error" hidden>Preencha seu nome e o nome da empresa para continuar.</p>
-            <div class="f-nav">
-              <button type="button" class="f-back" data-back>← Voltar</button>
-              <button type="button" class="btn btn-primary is-inactive" data-next>Continuar <span class="arrow">→</span></button>
-            </div>
+            <div class="f-nav"><button type="button" class="f-back" data-back>← Voltar</button><button type="button" class="btn btn-primary is-inactive" data-next>Continuar <span class="arrow">→</span></button></div>
           </div>
 
           <div class="f-step">
-            <label class="f-q" for="f-cidade-final"><span class="f-num">05</span>Em qual cidade e estado está a empresa?</label>
+            <label class="f-q" for="f-cidade-final"><span class="f-num">06</span>Em qual cidade e estado está a empresa?</label>
             <div class="f-fields">
               <input class="f-input" type="text" id="f-cidade-final" name="cidade" autocomplete="address-level2" placeholder="Ex.: Goiânia / GO">
             </div>
             <p class="f-error" hidden>Informe a cidade e o estado para continuar.</p>
-            <div class="f-nav">
-              <button type="button" class="f-back" data-back>← Voltar</button>
-              <button type="button" class="btn btn-primary is-inactive" data-next>Continuar <span class="arrow">→</span></button>
-            </div>
+            <div class="f-nav"><button type="button" class="f-back" data-back>← Voltar</button><button type="button" class="btn btn-primary is-inactive" data-next>Continuar <span class="arrow">→</span></button></div>
           </div>
 
           <div class="f-step">
-            <label class="f-q" for="f-whatsapp-final"><span class="f-num">06</span>Qual é o seu WhatsApp?</label>
+            <label class="f-q" for="f-whatsapp-final"><span class="f-num">07</span>Qual é o seu WhatsApp?</label>
             <div class="f-fields">
               <input class="f-input" type="tel" id="f-whatsapp-final" name="whatsapp" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000">
             </div>
             <p class="f-error" hidden>Digite um WhatsApp válido com DDD para continuar.</p>
-            <div class="f-nav">
-              <button type="button" class="f-back" data-back>← Voltar</button>
-              <button type="submit" class="btn btn-primary is-inactive" data-next>Enviar minha situação <span class="arrow">→</span></button>
-            </div>
+            <div class="f-nav"><button type="button" class="f-back" data-back>← Voltar</button><button type="submit" class="btn btn-primary is-inactive" data-next>Enviar minha situação <span class="arrow">→</span></button></div>
           </div>
         </form>
       </div>
-    </div>
   </div>
 </section>
 
