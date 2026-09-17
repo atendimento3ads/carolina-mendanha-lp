@@ -337,7 +337,10 @@ window.gtag_report_conversion = function (url) {
         var play = card.querySelector('.video-play');
         if (!play) return;
         play.addEventListener('click', function () {
-          var id = (card.getAttribute('data-youtube-id') || '').trim();
+          /* aceita o ID puro ou um link (watch?v=, youtu.be/, /shorts/, /embed/) */
+          var raw = (card.getAttribute('data-youtube-id') || '').trim();
+          var m = raw.match(/(?:v=|youtu\.be\/|\/shorts\/|\/embed\/)([\w-]{6,})/);
+          var id = m ? m[1] : raw;
           if (!id) {
             var soon = card.querySelector('.video-soon');
             if (soon) soon.hidden = false;
