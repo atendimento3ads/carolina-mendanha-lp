@@ -223,7 +223,7 @@ section { padding:96px 0; position:relative; }
 }
 
 /* ─── HERO: texto + formulário à esquerda | vídeo + benefícios à direita ─── */
-.hero { position:relative; overflow:hidden; background:var(--navy-900); color:var(--white); padding:60px 0 76px; }
+.hero { position:relative; overflow:hidden; background:var(--navy-900); color:var(--white); padding:60px 0 110px; }
 .hero-bg { position:absolute; inset:0; z-index:0; }
 .hero-bg img { width:100%; height:100%; object-fit:cover; object-position:75% 30%; filter:blur(16px) brightness(.55) saturate(1.1); transform:scale(1.1); }
 .hero-bg::after {
@@ -243,10 +243,10 @@ section { padding:96px 0; position:relative; }
 }
 .hero-sub { font-size:16.5px; color:rgba(255,255,255,.78); line-height:1.65; max-width:500px; margin:16px 0 26px; }
 
-.hero-side { display:grid; grid-template-columns:minmax(0,290px) minmax(0,1fr); gap:18px; align-items:center; }
+.hero-side { display:flex; justify-content:center; }
 /* Vídeo vertical 9:16 (embed do YouTube/Shorts carregado no clique; capa = foto vertical da Dra.) */
 .video-card {
-  position:relative; aspect-ratio:9/16; width:100%; border-radius:22px; overflow:hidden; background:var(--navy-800);
+  position:relative; aspect-ratio:9/16; width:100%; max-width:320px; border-radius:22px; overflow:hidden; background:var(--navy-800);
   border:1px solid rgba(233,190,102,.3); box-shadow:0 30px 80px rgba(0,0,0,.45);
 }
 .video-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top; }
@@ -267,23 +267,30 @@ section { padding:96px 0; position:relative; }
   font-size:12.5px; font-weight:600; letter-spacing:.04em; color:var(--white);
   background:rgba(10,21,48,.85); border:1px solid rgba(255,255,255,.14); padding:6px 14px; border-radius:var(--r-pill);
 }
-/* Benefícios: bloco flutuante só na metade direita, pouco transparente */
+/* Benefícios: faixa de vidro na divisa entre o hero e a seção seguinte */
+/* margem negativa = metade da altura da faixa, para ela ficar centrada na divisa */
+.proof-bridge { position:relative; z-index:5; margin:-46px 0; }
 .hero-proof {
-  display:grid; grid-template-columns:1fr; border-radius:18px; overflow:hidden;
-  background:rgba(8,16,38,.82); border:1px solid rgba(255,255,255,.1);
-  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-  box-shadow:0 22px 50px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08);
-  animation:float-y 6s ease-in-out infinite;
+  display:grid; grid-template-columns:repeat(4,1fr); max-width:1080px; margin:0 auto; padding:18px 10px;
+  border-radius:22px; border:1px solid rgba(255,255,255,.16);
+  background:linear-gradient(135deg, rgba(22,41,90,.78) 0%, rgba(10,21,48,.84) 100%);
+  backdrop-filter:blur(18px) saturate(150%); -webkit-backdrop-filter:blur(18px) saturate(150%);
+  box-shadow:0 26px 60px rgba(5,11,26,.35), inset 0 1px 0 rgba(255,255,255,.14);
+  position:relative;
 }
-@keyframes float-y { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-6px); } }
+.hero-proof::before {
+  content:''; position:absolute; top:-1px; left:15%; right:15%; height:1px;
+  background:linear-gradient(90deg, transparent, rgba(233,190,102,.8), transparent);
+}
 .hero-proof li {
-  display:flex; align-items:center; gap:12px; padding:14px 18px;
-  font-size:13.5px; color:rgba(255,255,255,.9); font-weight:500; line-height:1.35;
+  display:flex; align-items:center; justify-content:center; gap:12px; padding:6px 18px;
+  font-size:14px; color:rgba(255,255,255,.92); font-weight:500; line-height:1.35;
 }
-.hero-proof li + li { border-top:1px solid rgba(255,255,255,.08); }
+.hero-proof li + li { border-left:1px solid rgba(255,255,255,.12); }
+.hero-proof span { max-width:160px; }
 .hero-proof svg {
-  flex-shrink:0; box-sizing:content-box; width:18px; height:18px; padding:9px; border-radius:50%;
-  color:var(--gold-2); background:rgba(217,167,72,.12); border:1px solid rgba(217,167,72,.32);
+  flex-shrink:0; box-sizing:content-box; width:20px; height:20px; padding:10px; border-radius:50%;
+  color:var(--gold-2); background:rgba(217,167,72,.12); border:1px solid rgba(217,167,72,.35);
 }
 
 /* ─── Formulário conversacional ─── */
@@ -351,7 +358,7 @@ section { padding:96px 0; position:relative; }
 .f-back:hover { color:var(--navy-800); }
 
 /* ─── Seção 02 | faixa de alerta dourada ─── */
-.urgency { background:var(--white); padding:56px 0; }
+.urgency { background:var(--white); padding:108px 0 56px; }
 .urgency-strip {
   display:grid; grid-template-columns:auto 1fr auto; gap:30px; align-items:center;
   padding:34px 40px; border-radius:24px;
@@ -499,8 +506,7 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:56px 0 
 @media (min-width:1100px) { .header-note { display:block; } }
 @media (max-width:1100px) {
   .hero-grid { gap:40px; }
-  .hero-side { grid-template-columns:minmax(0,240px) minmax(0,1fr); gap:14px; }
-  .hero-proof li { padding:12px 14px; font-size:13px; }
+  .hero-proof li { padding:6px 12px; gap:10px; font-size:13px; }
 }
 @media (max-width:920px) {
   section { padding:72px 0; }
@@ -508,12 +514,12 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:56px 0 
   .hero-grid { grid-template-columns:1fr; gap:36px; }
   .hero-main { max-width:none; }
   .hero-bg::after { background:linear-gradient(180deg, rgba(10,21,48,.9) 0%, var(--navy-900) 60%); }
-  .hero-side { grid-template-columns:1fr; justify-items:center; max-width:620px; width:100%; margin:0 auto; }
-  .video-card { max-width:320px; }
-  .hero-proof { grid-template-columns:1fr 1fr; width:100%; }
-  .hero-proof li + li { border-top:0; }
-  .hero-proof li:nth-child(odd) { border-right:1px solid rgba(255,255,255,.08); }
-  .hero-proof li:nth-child(n+3) { border-top:1px solid rgba(255,255,255,.08); }
+  .proof-bridge { margin:-76px 0; }
+  .hero { padding-bottom:108px; }
+  .urgency { padding-top:116px; }
+  .hero-proof { grid-template-columns:1fr 1fr; gap:14px 0; max-width:620px; }
+  .hero-proof li { justify-content:flex-start; }
+  .hero-proof li:nth-child(3) { border-left:0; }
   .form-card--hero { max-width:620px; }
   .urgency-strip { grid-template-columns:auto 1fr; gap:18px 22px; padding:30px 28px; }
   .urgency-strip .btn { grid-column:1 / -1; justify-self:start; }
@@ -547,9 +553,12 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:56px 0 
   .form-card, .form-card--hero { padding:22px 18px 22px; border-radius:22px; }
   .f-options { grid-template-columns:1fr; }
   .f-nav { flex-wrap:wrap; }
-  .hero-proof li { padding:12px 12px; gap:10px; font-size:12.5px; }
+  .proof-bridge { margin:-76px 0; }
+  .hero { padding-bottom:108px; }
+  .hero-proof { padding:16px 12px; gap:16px 8px; border-radius:18px; }
+  .hero-proof li, .hero-proof li:nth-child(3) { padding:0 4px; border-left:0; gap:9px; font-size:12.5px; }
   .hero-proof svg { width:16px; height:16px; padding:8px; }
-  .urgency { padding:40px 0; }
+  .urgency { padding:116px 0 40px; } /* 116 = metade da faixa de vidro + respiro */
   .urgency-strip { grid-template-columns:1fr; padding:26px 22px; }
   .urgency-ico { width:52px; height:52px; }
   .urgency-strip .btn { width:100%; }
@@ -706,7 +715,7 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:56px 0 
       </div>
     </div>
 
-    <aside class="hero-side reveal" data-d="2" aria-label="Vídeo e diferenciais">
+    <aside class="hero-side reveal" data-d="2" aria-label="Vídeo da Dra. Ana Carolina Mendanha">
       <!-- [VÍDEO DA DRA. CAROLINA] Vídeo vertical (9:16) no YouTube/Shorts.
            Preencher data-youtube-id com o ID ou o link (ex.: https://youtube.com/shorts/ID).
            O iframe só carrega no clique; até lá a capa é a foto vertical (marcação). -->
@@ -717,15 +726,21 @@ footer { background:var(--navy-950); color:rgba(255,255,255,.6); padding:56px 0 
         </button>
         <span class="video-soon" hidden>Vídeo em breve</span>
       </div>
-      <ul class="hero-proof">
-        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><span>18 anos de atuação</span></li>
-        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg><span>Foco na defesa de quem emprega</span></li>
-        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01"/><path d="M12 10h.01"/><path d="M16 10h.01"/></svg><span>Contato direto com a advogada</span></li>
-        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg><span>Atendimento online em todo o Brasil</span></li>
-      </ul>
     </aside>
   </div>
 </section>
+
+<!-- Benefícios: faixa de vidro sobre a divisa hero / seção 02 -->
+<div class="proof-bridge">
+  <div class="container">
+    <ul class="hero-proof reveal">
+      <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><span>18 anos de atuação</span></li>
+      <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg><span>Foco na defesa de quem emprega</span></li>
+      <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01"/><path d="M12 10h.01"/><path d="M16 10h.01"/></svg><span>Contato direto com a advogada</span></li>
+      <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg><span>Atendimento online em todo o Brasil</span></li>
+    </ul>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════════════════
      SEÇÃO 02 | QUANDO A EMPRESA PRECISA RESPONDER? (faixa)
