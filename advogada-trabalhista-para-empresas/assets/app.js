@@ -347,11 +347,13 @@ window.gtag_report_conversion = function (url) {
             return;
           }
           var iframe = document.createElement('iframe');
-          iframe.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+          iframe.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '?autoplay=1&controls=1&fs=1&playsinline=1&rel=0';
           iframe.title = 'Vídeo da Dra. Ana Carolina Mendanha';
           iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
           iframe.allowFullscreen = true;
+          iframe.referrerPolicy = 'strict-origin-when-cross-origin';
           card.appendChild(iframe);
+          card.classList.add('is-playing');
           play.remove();
         });
       })(videoCards[v]);
