@@ -13,3 +13,6 @@ deployment:
     - /bin/cp -R assets "$DEPLOYPATH"
     # v2 em aprovação (carolinamendanha.com.br/v2/, noindex)
     - /bin/cp -R v2 "$DEPLOYPATH"
+    - /bin/mkdir -p "$DEPLOYPATH/advogada-trabalhista-para-empresas"
+    - /bin/cp advogada-trabalhista-para-empresas/index.html "$DEPLOYPATH/advogada-trabalhista-para-empresas"
+    - /bin/cp -R advogada-trabalhista-para-empresas/assets "$DEPLOYPATH/advogada-trabalhista-para-empresas"

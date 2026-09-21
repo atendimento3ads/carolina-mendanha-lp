@@ -10,6 +10,9 @@ Site estático — HTML + CSS (sem build, sem dependências).
 ```
 .
 ├── index.html        # Página principal (versão em produção)
+├── advogada-trabalhista-para-empresas/
+│   ├── index.html    # Segunda LP publicada no slug definitivo
+│   └── assets/app.js # Formulário e interações específicos da segunda LP
 ├── assets/
 │   ├── hero-carolina.png    # Foto da hero
 │   └── sobre-carolina.png   # Foto da seção "Autoridade"
@@ -41,6 +44,8 @@ python3 -m http.server 8000
 5. Em **Manage → Pull or Deploy → Update from Remote** e depois **Deploy HEAD Commit**.
 
 A cada `git push` na branch `main`, faça **Update + Deploy** no cPanel para publicar.
+O mesmo deploy mantém a página principal na raiz e publica a segunda LP em
+`/advogada-trabalhista-para-empresas/`.
 
 ## Pendências antes de publicar
 
